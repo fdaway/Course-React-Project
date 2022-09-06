@@ -1,0 +1,56 @@
+[
+    {
+        "id": "1",
+        "title": "Course Overeview",
+        "duration": "12min 36s",
+        "type": "🎥"
+    },
+    {
+        "id": "2",
+        "title": "3 course goals and timing",
+        "duration": "5min 22s",
+        "type": "🎥"
+    },
+    {
+        "id": "3",
+        "title": "About me",
+        "duration": "3min 22s",
+        "type": "🎥 "
+    },
+    {
+        "id": "4",
+        "title": "3 Study based approaches ranked by efficiency",
+        "duration": "12min 36s",
+        "type": "🎥"
+    },
+    {
+        "id": "5",
+        "title": "Combining methods into a single multisteps strategy",
+        "duration": "5min 22s",
+        "type": "🎥"
+    },
+    {
+        "id": "6",
+        "title": "Choosing glucometer and/or CGM system",
+        "duration": "3min 22s",
+        "type": "🎥"
+    },
+    {
+        "id": "7",
+        "title": "Budget tools for glucose monitoring",
+        "duration": "11min 22s",
+        "type": "🎥"
+    },
+    {
+        "id": "8",
+        "title": "Importance of having kitchen weights",
+        "duration": "5min 22s",
+        "type": "🎥"
+    },
+    {
+        "id": "9",
+        "title": "Glucemic index vs total carbs count",
+        "duration": "3min 22s",
+        "type": "🎥"
+    }
+]
