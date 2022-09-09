@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
 
-function Header() {
+function Header( {progress} ) {
     return <div className="HeaderContainer">
             <header className="App-header">
               <div className="Title">
                 <Link to="/">Glycemic Control</Link> 
+              </div>
+              <div className="progress">
+                <p>Progress: {progress}%</p>
               </div>
               <div className="Start-nav">
                 <Link to="/login"><button className="NakedButtonBlack">Login</button></Link>

@@ -1,7 +1,7 @@
 body {
   background: #eaeaea;
   }
-  h1, h2, ul,li {
+  h1, h2, ul,li, p {
     margin: 0;
     list-style:none;
     padding: 0;

@@ -52,17 +52,24 @@ const App = () => {
         }
     ])
     const [current, setCurrent] = useState (1)
-
+    const [progress, setProgress] = useState (0)
     const clickLesson = (id) => {
         setCurrent(id)
     }
-    const increment = () => {
+    const increment = () => {    // lesson
         setCurrent(current + 1)
     }
     const decrement = () => {
        setCurrent(current - 1) 
     }
-    const markComplete = () => {
+
+    const incrementProgress = () => {
+        setProgress(progress + 100 / lessons.length)
+    }
+    const decrementProgress = () => {
+        setProgress(progress - 100 / lessons.length)
+    }
+    const markComplete = () => {  //lesson
         setLessons([...lessons].map(object => {
             if(object.id === current) {
                 return {
@@ -72,20 +79,16 @@ const App = () => {
                 }
                 else return object 
         }))
-        setCurrent(current + 1)
+        if(current !== lessons.length)setCurrent(current + 1)
+        incrementProgress()
         let i = 1;
-        console.log("MarkComplete, current: ", current, lessons[current-1].isComplete)
         while(i < lessons.length) {
             i++
             console.log(i)
-           
-        }
-         
-        console.log(" MarkComplete2, current: ", current,lessons[current-1].title, lessons[current].isComplete)
-         
+        } 
     }
     const markUnComplete = () => {
-         
+        decrementProgress() 
         setLessons([...lessons].map(object => {
             if(object.id === current) {
                 return {
@@ -112,10 +115,10 @@ const App = () => {
   return (
    
       <div className="App">
-        <Header  />
+        <Header  progress={progress}/>
         <Routes>
         <Route path="/" element={<Lessons lessons={lessons} clickLesson={clickLesson} markComplete={markComplete} 
-        markUnComplete={markUnComplete} current={current} increment={increment} decrement={decrement} finish={finish}/>}  />
+        markUnComplete={markUnComplete} current={current} increment={increment} decrement={decrement} progress={progress} finish={finish}/>}  />
         <Route path="/start" element={<Start />}  />
         <Route path="/login" element={<Login />}  />
         <Route path="/contacts" element={<Contacts />}  />
