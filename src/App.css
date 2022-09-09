@@ -54,6 +54,29 @@ body {
   max-width: 1100px;
   margin: 0 auto;
  }
+ .Progress {
+  border-radius: 3px;
+  width: 200px;
+  height: 15px;
+  background: rgb(228 228 228);
+ }
+ .innerProgress {
+  border-radius: 3px;
+  width: 10px;
+  height: 15px;
+  background: #c7c7c7;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  overflow:visible;
+  animation-duration: 3s;
+  transition: 3s;
+ }
+ .Progress p {
+  font-size: 0.6rem;
+  margin: 0 auto;
+  min-width: 90px;
+ }
 .Title {
   font-weight: 600;
   color: #222;
@@ -130,6 +153,26 @@ body {
 .Cards {
   height:80vh;
   padding-right: .7em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.Cards::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 3px;
+	background-color: #F5F5F5;
+} 
+
+.Cards::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+.Cards::-webkit-scrollbar-thumb
+{
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #eaeaea;
 }
 .Card {
     background: white;
@@ -162,7 +205,6 @@ body {
 .LessonContainer {
   padding: 1em;
 }
- 
 .LessonsPage {
   border-top: 12px solid #e2e2e2;
   box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
@@ -215,8 +257,7 @@ iframe {
 }
 .CheckIcon {
   color: #12b612;
-  font-size: 0.9rem;
-  
+  font-size: 0.9rem; 
 }
 .PlayIcon {
   font-size: 0.72rem;

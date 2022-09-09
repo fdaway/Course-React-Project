@@ -49,6 +49,22 @@ const App = () => {
             "type": "🎥",
             "isActive": false,
             "isComplete": false
+        },
+        {
+            "id": 6,
+            "title": "Hb1Ac as a main indicator: pre and after course tests",
+            "duration": "4min 11s",
+            "type": "🎥",
+            "isActive": false,
+            "isComplete": false
+        },
+        {
+            "id": 7,
+            "title": "Continuous glucose monitoring (CGM)",
+            "duration": "2min 10s",
+            "type": "🎥",
+            "isActive": false,
+            "isComplete": false
         }
     ])
     const [current, setCurrent] = useState (1)
@@ -81,11 +97,6 @@ const App = () => {
         }))
         if(current !== lessons.length)setCurrent(current + 1)
         incrementProgress()
-        let i = 1;
-        while(i < lessons.length) {
-            i++
-            console.log(i)
-        } 
     }
     const markUnComplete = () => {
         decrementProgress() 

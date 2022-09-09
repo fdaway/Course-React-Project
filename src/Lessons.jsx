@@ -36,7 +36,7 @@ onClick={markUnComplete}>
 <div>
 <Link to="/finish">
 <button className="ButtonBlue Complete" onClick={finish}
-style={progress === 100 && current === lessons.length? {} : displayNone  }
+style={progress >= 100 && current === lessons.length? {} : displayNone  }
  >
 {'Finish Course'} </button>
 </Link>

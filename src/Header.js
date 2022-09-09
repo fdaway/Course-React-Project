@@ -6,8 +6,9 @@ function Header( {progress} ) {
               <div className="Title">
                 <Link to="/">Glycemic Control</Link> 
               </div>
-              <div className="progress">
-                <p>Progress: {progress}%</p>
+              <div className="Progress">
+                
+                <div className="innerProgress" style={{'width': `${progress}%`}}><p>Progress: {Math.round(progress)}%</p></div>
               </div>
               <div className="Start-nav">
                 <Link to="/login"><button className="NakedButtonBlack">Login</button></Link>
@@ -16,4 +17,5 @@ function Header( {progress} ) {
             </header>
           </div>
 }
+ 
 export default Header; 
