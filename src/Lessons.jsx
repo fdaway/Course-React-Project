@@ -1,5 +1,5 @@
 import LessonCard from './LessonCard.jsx'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { FaCheck } from 'react-icons/fa'
 
 const  Lessons  = ({ lessons, clickLesson, markComplete, markUnComplete, current, increment, decrement, progress, finish }) => {
@@ -34,12 +34,12 @@ onClick={markUnComplete}>
 {'Mark as not complete'}</button>
 
 <div>
-<Link to="/finish">
+{/* <Link to="/finish">
 <button className="ButtonBlue Complete" onClick={finish}
 style={progress >= 100 && current === lessons.length? {} : displayNone  }
  >
 {'Finish Course'} </button>
-</Link>
+</Link> */}
 
 <button className="ButtonGrey" 
 style={current === 1 || current===lessons.length ? displayNone : { } }

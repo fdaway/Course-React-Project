@@ -8,7 +8,7 @@ function Header( {progress} ) {
               </div>
               <div className="Progress">
                 
-                <div className="innerProgress" style={{'width': `${progress}%`}}><p>Progress: {Math.round(progress)}%</p></div>
+                <div className="innerProgress" style={{'width': `${progress}%`}}><p>Progress: <strong>{Math.round(progress)}%</strong></p></div>
               </div>
               <div className="Start-nav">
                 <Link to="/login"><button className="NakedButtonBlack">Login</button></Link>
