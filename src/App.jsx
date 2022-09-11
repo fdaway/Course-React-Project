@@ -36,7 +36,7 @@ const App = () => {
         },
         {
             "id": 4,
-            "title": "3 Study based approaches ranked by efficiency",
+            "title": "Using State",
             "duration": "12min 36s",
             "type": "🎥",
             "isActive": false,
@@ -52,7 +52,7 @@ const App = () => {
         },
         {
             "id": 6,
-            "title": "Hb1Ac as a main indicator: pre and after course tests",
+            "title": "Sign-in form with oAuth",
             "duration": "4min 11s",
             "type": "🎥",
             "isActive": false,
@@ -60,7 +60,7 @@ const App = () => {
         },
         {
             "id": 7,
-            "title": "Continuous glucose monitoring (CGM)",
+            "title": "Animated progress bar",
             "duration": "2min 10s",
             "type": "🎥",
             "isActive": false,
