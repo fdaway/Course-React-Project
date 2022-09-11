@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import jwt_decode from 'jwt-decode'
-import { FaSignOutAlt } from 'react-icons/fa'
+
 function Header( {progress} ) {
   
   const [ user, setUser ] = useState({});
+  const [logOutStyle, setStyle] = useState({display:'none'})
 
   function handleSignOut(){
     setUser({})
@@ -23,10 +24,13 @@ function Header( {progress} ) {
 
       google.accounts.id.renderButton(
         document.getElementById("signInDiv"),
-        { theme: "outline", size: "large" }
+        { theme: "outline", size: "medium" }
       )
   }, [])
-    return <div className="HeaderContainer">
+    return <div className="HeaderContainer" 
+      onMouseLeave={e => {
+      setStyle({display: 'none'})
+      }}>
             <header className="App-header">
               <div className="Title">
                 <Link to="/">Course Project</Link> 
@@ -39,11 +43,16 @@ function Header( {progress} ) {
               <div id="signInDiv" style={Object.keys(user).length !== 0 ? {display: 'none'} : {}}></div>
                
               { Object.keys(user).length !== 0 &&
-              <div className="userInfo">
+              <div className="userInfo"
+              onClick={e => {
+              setStyle({display: 'block', color: 'rgb(4, 131, 221)', fontWeight: '600'});
+              }}
+              >
               <h4>{user.name}</h4>
               <img src={user.picture} alt="Profile"/>
-              <button onClick={handleSignOut}><FaSignOutAlt /></button>
+              <p onClick={handleSignOut} style={logOutStyle}>Sign Out</p>
               </div>
+             
               } 
                
               

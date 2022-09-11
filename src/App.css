@@ -46,14 +46,16 @@ body {
 }
 .HeaderContainer {
   background: white;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);  padding: 12px 0;     
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);  padding: 12px 0;
+  height: 2rem;     
 }
 .App-header {
   display: flex;
   justify-content: space-between;
-  max-width: 1100px;
+  max-width: 77rem;
   margin: 0 auto;
   align-items: center;
+  height: 2rem;
  }
  .Progress {
   border-radius: 3px;
@@ -91,6 +93,7 @@ body {
   align-items: center;
   font-size: 0.9rem;
   height: 0;
+  cursor: pointer;
 }
 .userInfo img {
   /* // transform: scale(.35); */
@@ -163,7 +166,7 @@ body {
   }
 .ContentContainer {
   margin: 2em auto 0;
-  min-width: 1100px;
+  min-width: 77rem;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -230,7 +233,7 @@ body {
   background: #fff;
   border-radius: 3px;
   min-width: 360px;  
-  max-width: 760px;
+  max-width: 56rem;
   width: 100%;
   margin-left: 2em;
   height: fit-content;
@@ -368,5 +371,6 @@ iframe {
   .App-header {
     padding: 0 0.7em;
     align-items: center;
+    display: flex;
   }
 }
