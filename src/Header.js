@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import jwt_decode from 'jwt-decode'
 
-function Header( {progress} ) {
+function Header( {progress, lessons} ) {
   
   const [ user, setUser ] = useState({});
   const [logOutStyle, setStyle] = useState({display:'none'})

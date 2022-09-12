@@ -6,23 +6,22 @@ import Contacts from './pages/contacts'
 import Header from './Header'
 import Footer from './Footer'
 import Lessons from './Lessons.jsx'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import Axios from 'axios'
 const App = () => {
     const [lessons, setLessons] = useState([
         {
             "id": 1,
             "title": "Course Overeview",
             "duration": "12min 36s",
-            "type": "🎥",
-            "isActive": false,
+            "isActive": true,
             "isComplete": false
         },
         {
             "id": 2,
             "title": "3 course goals and timing",
             "duration": "5min 22s",
-            "type": "🎥",
             "isActive": true,
             "isComplete": false
         },
@@ -30,7 +29,6 @@ const App = () => {
             "id": 3,
             "title": "About me",
             "duration": "3min 22s",
-            "type": "🎥",
             "isActive": false,
             "isComplete": false
         },
@@ -38,15 +36,13 @@ const App = () => {
             "id": 4,
             "title": "Using State",
             "duration": "12min 36s",
-            "type": "🎥",
             "isActive": false,
             "isComplete": false
         },
         {
             "id": 5,
-            "title": "Combining methods into a single multisteps strategy",
+            "title": "Combining methods into a single multisteps",
             "duration": "5min 22s",
-            "type": "🎥",
             "isActive": false,
             "isComplete": false
         },
@@ -54,21 +50,21 @@ const App = () => {
             "id": 6,
             "title": "Sign-in form with oAuth",
             "duration": "4min 11s",
-            "type": "🎥",
-            "isActive": false,
-            "isComplete": false
-        },
-        {
-            "id": 7,
-            "title": "Animated progress bar",
-            "duration": "2min 10s",
-            "type": "🎥",
             "isActive": false,
             "isComplete": false
         }
+ 
     ])
     const [current, setCurrent] = useState (1)
     const [progress, setProgress] = useState (0)
+
+
+    useEffect(() => {
+        Axios.get("http://localhost:3001/api").then((response) => {
+            setLessons(response.data)
+        })
+    }, [])
+
     const clickLesson = (id) => {
         setCurrent(id)
     }
@@ -78,7 +74,7 @@ const App = () => {
     const decrement = () => {
        setCurrent(current - 1) 
     }
-
+ 
     const incrementProgress = () => {
         setProgress(progress + 100 / lessons.length)
     }
@@ -126,7 +122,7 @@ const App = () => {
   return (
    
       <div className="App">
-        <Header  progress={progress}/>
+        <Header  progress={progress} lessons={lessons}/>
         <Routes>
         <Route path="/" element={<Lessons lessons={lessons} clickLesson={clickLesson} markComplete={markComplete} 
         markUnComplete={markUnComplete} current={current} increment={increment} decrement={decrement} progress={progress} finish={finish}/>}  />

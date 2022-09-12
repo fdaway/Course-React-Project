@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+# sensitive backend
+/server
+
 # testing
 /coverage
 
