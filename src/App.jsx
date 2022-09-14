@@ -22,12 +22,12 @@ const App = () => {
             "id": 2,
             "title": "3 course goals and timing",
             "duration": "5min 22s",
-            "isActive": true,
+            "isActive": false,
             "isComplete": false
         },
         {
             "id": 3,
-            "title": "About me",
+            "title": "Placeholder",
             "duration": "3min 22s",
             "isActive": false,
             "isComplete": false
@@ -55,9 +55,6 @@ const App = () => {
         }
  
     ])
-    const [current, setCurrent] = useState (1)
-    const [progress, setProgress] = useState (0)
-
 
     useEffect(() => {
         Axios.get("http://localhost:3001/api").then((response) => {
@@ -65,67 +62,68 @@ const App = () => {
         })
     }, [])
 
-    const clickLesson = (id) => {
-        setCurrent(id)
-    }
-    const increment = () => {    // lesson
-        setCurrent(current + 1)
+    let current = 0
+    lessons.map((lesson) => {
+        if(lesson.isActive) current = lesson.id
+        return current  
+    })
+    
+    const increment = () => {     
+        current++
+        clickLesson(current)
     }
     const decrement = () => {
-       setCurrent(current - 1) 
+       current--
+       clickLesson(current)
+    }
+
+    const clickLesson = (id) => {  
+        setLessons([...lessons].map(object => {
+            if(object.id === id) {
+                return {
+                    ...object, 
+                    isActive: 1
+                }
+            }
+            else return {
+                    ...object, 
+                    isActive: 0
+                }
+       }))
     }
  
-    const incrementProgress = () => {
-        setProgress(progress + 100 / lessons.length)
-    }
-    const decrementProgress = () => {
-        setProgress(progress - 100 / lessons.length)
-    }
-    const markComplete = () => {  //lesson
+    const markComplete = () => {  
         setLessons([...lessons].map(object => {
             if(object.id === current) {
                 return {
                     ...object,
-                    isComplete: true
+                    isComplete: 1
                    }
                 }
                 else return object 
         }))
-        if(current !== lessons.length)setCurrent(current + 1)
-        incrementProgress()
-    }
+    } 
+
     const markUnComplete = () => {
-        decrementProgress() 
         setLessons([...lessons].map(object => {
             if(object.id === current) {
                 return {
                     ...object,
-                    isComplete: false
+                    isComplete: 0
                    }
                 }
                 else return object
         }))
     }
-    const finish = () => {
-        setLessons([...lessons].map(object => {
-            if(object.id === current) {
-                return {
-                    ...object,
-                    isComplete: true
-                   }
-                }
-                else return object
-        }))
-    }
-   
+
 
   return (
-   
+  
       <div className="App">
-        <Header  progress={progress} lessons={lessons}/>
+        <Header lessons={lessons}/>
         <Routes>
         <Route path="/" element={<Lessons lessons={lessons} clickLesson={clickLesson} markComplete={markComplete} 
-        markUnComplete={markUnComplete} current={current} increment={increment} decrement={decrement} progress={progress} finish={finish}/>}  />
+        markUnComplete={markUnComplete} current={current} increment={increment} decrement={decrement} />}  />
         <Route path="/start" element={<Start />}  />
         <Route path="/login" element={<Login />}  />
         <Route path="/contacts" element={<Contacts />}  />

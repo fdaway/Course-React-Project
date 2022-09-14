@@ -2,22 +2,26 @@ import LessonCard from './LessonCard.jsx'
 // import { Link } from 'react-router-dom'
 import { FaCheck } from 'react-icons/fa'
 
-const  Lessons  = ({ lessons, clickLesson, markComplete, markUnComplete, current, increment, decrement, progress, finish }) => {
+const  Lessons  = ({ lessons, clickLesson, markComplete, markUnComplete, increment, decrement, current }) => {
+
     return <div className="ContentContainer">
 
 <div className="Cards">
-{lessons.map((lessonMap) => (
-<LessonCard key={lessonMap.id} lesson={lessonMap} 
-clickLesson={clickLesson} current={current} /> 
+{lessons.map((lesson) => (
+<LessonCard key={lesson.id} lesson={lesson} 
+clickLesson={clickLesson} /> 
 ))}
 </div>
-
-    
+ 
 <div className="LessonsPage">
 <div className="LessonContainer">  
-<h1>{current}. {lessons[current-1].title}</h1>
-<div className="LessonNav">
+{lessons.map((lesson) => (
+    lesson.isActive ? 
+    <h1 key={lesson.id}>{lesson.id}. {lesson.title}</h1> 
+    : null
+    ))}
 
+<div className="LessonNav">
 <button className="ButtonGrey" 
 style={current === 1 ? displayNone : { } }
 onClick={decrement}

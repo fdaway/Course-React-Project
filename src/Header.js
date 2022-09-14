@@ -2,8 +2,14 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import jwt_decode from 'jwt-decode'
 
-function Header( {progress, lessons} ) {
+function Header({lessons}) {
   
+  let progress = 0
+  let nCompleted = 0
+  for(let i = 0; i < lessons.length; i++) {
+    if(lessons[i].isComplete) nCompleted++
+  }
+  progress = nCompleted / lessons.length * 100
   const [ user, setUser ] = useState({});
   const [logOutStyle, setStyle] = useState({display:'none'})
 

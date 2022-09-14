@@ -1,5 +1,5 @@
 body {
-  background: #eaeaea;
+  background: #f8fcff;
   }
   h1, h2, ul,li, p {
     margin: 0;
@@ -46,7 +46,8 @@ body {
 }
 .HeaderContainer {
   background: white;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);  padding: 12px 0;
+  box-shadow: 0 10px 20px rgb(117 184 227), 0 6px 6px #75b8e3;
+  padding: 12px 0;
   height: 2rem;     
 }
 .App-header {
@@ -81,8 +82,11 @@ body {
   min-width: 90px;
  }
 .Title {
-  font-weight: 600;
-  color: #222;
+  font: bold 1.5rem arial, sans-serif;
+  background-color: #565656;
+  color: transparent;
+  text-shadow: 2px 2px 3px rgba(255,255,255,0.5);
+ background-clip: text;
 }  
 .StartNav {
   display: flex;
@@ -113,7 +117,7 @@ body {
 .ButtonBlue {
     cursor: pointer;
     color: white;
-    background: #0076ff;
+    background: #0099f5;
     border: 0px;
     border-radius: 2px;
     padding: 6px 7px;
@@ -123,7 +127,7 @@ body {
   .ButtonGrey {
     cursor: pointer;
     color: white;
-    background: #e2e2e2;
+    background: #0099f5;
     border: 0px;
     border-radius: 2px;
     font-size: .9rem;
@@ -180,31 +184,31 @@ body {
 
 .Cards::-webkit-scrollbar-track
 {
-	-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
-	border-radius: 3px;
-	background-color: #F5F5F5;
+  -webkit-box-shadow: inset 0 0 3px rgb(191 219 234);
+  border-radius: 3px;
+  background-color: #fbfdff;
 } 
 
 .Cards::-webkit-scrollbar
 {
 	width: 12px;
-	background-color: #F5F5F5;
+	background-color: #f0f9ff;
 }
 .Cards::-webkit-scrollbar-thumb
 {
-	border-radius: 3px;
-	-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,.3);
-  background-color: #eaeaea;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 0 3px rgb(199 226 245);
+  background-color: #e1f2fd;
 }
 .Card {
-    background: white;
-    border: 7px solid #e4e4e4;
+    background: #f9fdff;
+    border: 3px solid #98d3fa;
     border-radius: 3px;
     width: 206px;
     padding: 0.2em 0.4em 0.3em 0.4em;
     margin-bottom: 1em;
     cursor: pointer;
-    box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 3px 3px 6px 0px rgb(0 0 0 / 14%);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     display: flex;
     flex-direction: column;
@@ -213,6 +217,7 @@ body {
 .CardLine1 {
   display: flex;
   justify-content: space-between;
+  height: 1.3rem
 }
 .Card p {
   text-align: left;
@@ -222,15 +227,16 @@ body {
 }
 .Card:hover {
   box-shadow: 0 9px 15px rgb(0 0 0 / 25%), 0 6px 6px rgb(0 0 0 / 22%);
-  border: 7px solid #dadada;
+  border: 3px solid #0099f5;
 }
 .LessonContainer {
   padding: 1em;
 }
 .LessonsPage {
-  border-top: 12px solid #e2e2e2;
+  border: 3px solid #c4e2f7;
+  border-top: 12px solid #c4e2f7;
   box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
-  background: #fff;
+  background: #f9fdff;
   border-radius: 3px;
   min-width: 360px;  
   max-width: 56rem;
@@ -268,13 +274,14 @@ iframe {
   margin-top: 4px;
 }
 .LessonTitle {
- font-size:0.66em;
+ color: #003d61;
+ font-size:0.94rem;
  margin: 0.3em 0;
 }
 .LessonDuration {
   padding: 0;
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: #999;
 }
