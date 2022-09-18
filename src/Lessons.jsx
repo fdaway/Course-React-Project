@@ -14,8 +14,11 @@ clickLesson={clickLesson} />
 </div>
  
 <div className="LessonsPage">
+ <div style={{position: 'relative', width: '100%', height: '500px' }}>
+ <iframe width="100%" height="100%" src="https://www.youtube.com/embed/GLSr0BAlndM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ </div>
 <div className="LessonContainer">  
-{lessons.map((lesson) => (
+{lessons.map((lesson) => ( 
     lesson.isActive ? 
     <h1 key={lesson.id}>{lesson.id}. {lesson.title}</h1> 
     : null
@@ -46,7 +49,7 @@ style={progress >= 100 && current === lessons.length? {} : displayNone  }
 </Link> */}
 
 <button className="ButtonGrey" 
-style={current === 1 || current===lessons.length ? displayNone : { } }
+style={current===lessons.length ? displayNone : { } }
 onClick={increment}
 >➡</button>
 </div>

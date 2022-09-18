@@ -61,15 +61,15 @@ body {
  .Progress {
   border-radius: 3px;
   width: 200px;
-  height: 1.6rem;
-  background: rgb(228 228 228);
+  height: 1.5rem;
+  background: rgb(175 228 255);
  }
  .innerProgress {
   border-radius: 3px;
   cursor: default;
   user-select: none;
-  height: 1.6rem;
-  background: #c7c7c7;
+  height: 1.5rem;
+  background: #6ac7ff;
   display: flex;
   align-items: center;
   text-align: center;
@@ -191,7 +191,7 @@ body {
 
 .Cards::-webkit-scrollbar
 {
-	width: 12px;
+	width: 9px;
 	background-color: #f0f9ff;
 }
 .Cards::-webkit-scrollbar-thumb
@@ -239,8 +239,7 @@ body {
   background: #f9fdff;
   border-radius: 3px;
   min-width: 360px;  
-  max-width: 56rem;
-  width: 100%;
+  flex: 1;
   margin-left: 2em;
   height: fit-content;
 }
