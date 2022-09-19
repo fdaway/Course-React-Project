@@ -18,6 +18,13 @@ body {
     color: #000; 
     text-decoration: none;
   }
+.adminPanel {
+  position: fixed;
+  top: 40%;
+  padding: 1rem;
+  color: #444;
+  font-size: .72rem;
+}
 .App {
   text-align: left;
   font-size: calc(10px + 1.6vmin);
