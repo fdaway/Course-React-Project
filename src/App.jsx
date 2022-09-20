@@ -69,16 +69,16 @@ const App = () => {
     }, [])
 
  
-       
-        useEffect(() => {
-            const activeID = session.activeID
-            const completedLessons = session.completedLessons.join("-")
-            Axios.post("http://localhost:3001/api/update", {
-                activeID: activeID,
-                completedLessons: completedLessons
-            })
-        }, [session.activeID, session.completedLessons])
-
+    const updateSession = () => { 
+        console.log("Update session")
+        var activeID = session.activeID
+        var completedLessons = session.completedLessons.join("-")
+        Axios.post("http://localhost:3001/api/update", {
+            activeID: activeID,
+            completedLessons: completedLessons
+        })
+    }
+        
 
 
  
@@ -126,7 +126,7 @@ const App = () => {
   return (
        
         <div className="App">
-          
+            <p onClick={updateSession} style={{cursor: 'pointer'}}>Update</p>
             <Header lessons={lessons} session={session} handleSignIn={handleSignIn} />
             <Routes>
             <Route path="/" element={<Lessons lessons={lessons} session={session} clickLesson={clickLesson} markComplete={markComplete} 

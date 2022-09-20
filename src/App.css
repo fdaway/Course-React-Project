@@ -67,15 +67,15 @@ body {
  }
  .Progress {
   border-radius: 3px;
-  width: 200px;
-  height: 1.5rem;
+  width: 12rem;
+  height: 1.4rem;
   background: rgb(175 228 255);
  }
  .innerProgress {
   border-radius: 3px;
   cursor: default;
   user-select: none;
-  height: 1.5rem;
+  height: 1.4rem;
   background: #6ac7ff;
   display: flex;
   align-items: center;
@@ -84,7 +84,7 @@ body {
   transition: 2.2s;
  }
  .Progress p {
-  font-size: 0.79rem;
+  font-size: 0.72rem;
   margin: 0 auto;
   min-width: 90px;
  }
@@ -355,12 +355,12 @@ iframe {
 .CardInfo {
   display: flex;
 }
-@media only screen and (max-width: 1150px) {
+@media only screen and (max-width: 1258px) {
   .Cards {
     width: 70%;
     padding: 0 1em;
     margin: 0 auto 1em;
-    height: 485px;
+    height:  195px;
   }
   .Card {
   margin: .8rem auto;
@@ -371,8 +371,8 @@ iframe {
     min-width: 0;
   }
   .LessonsPage {
-    margin: 0 auto;
-    width: 100%;
+    margin: .8rem;
+    flex: 1;
   }
   .LessonContainer {
     margin: 0 auto;
@@ -384,6 +384,24 @@ iframe {
   .App-header {
     padding: 0 0.7em;
     align-items: center;
+    justify-content: space-around;
     display: flex;
+    flex-wrap: wrap;
+     
   }
-}
+} 
+
+
+@media only screen and (max-width: 637px) { 
+  #signInDiv {
+  margin-top: 1rem;
+   }
+   .Cards { 
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+    height: 174px;
+   }
+   .Card {
+    margin-top: 0;
+   }
+  }
