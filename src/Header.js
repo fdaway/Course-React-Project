@@ -2,14 +2,9 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import jwt_decode from 'jwt-decode'
 
-function Header({lessons}) {
-  
-  let progress = 0
-  let nCompleted = 0
-  for(let i = 0; i < lessons.length; i++) {
-    if(lessons[i].isComplete) nCompleted++
-  }
-  progress = nCompleted / lessons.length * 100
+const Header = ({ lessons, session, handleSignIn }) => {
+ 
+  let progress = session.completedLessons.length / lessons.length * 100
   const [ user, setUser ] = useState({});
   const [logOutStyle, setStyle] = useState({display:'none'})
 
@@ -17,29 +12,30 @@ function Header({lessons}) {
     setUser({})
   }
   function handlecallBackResponse(response) {
-    var userObject = jwt_decode(response.credential)
-    console.log(userObject)
-    setUser(userObject)
+    let identity = jwt_decode(response.credential)
+     setUser(identity)
+    //handleIdentityFetch(identity)
   }
+ 
   useEffect(() => {
     /* global google */
     google.accounts.id.initialize({
       client_id: "1023936046196-eko5tfnruegbdv2efdn4eb13kbfn6vdd.apps.googleusercontent.com",
       callback: handlecallBackResponse
-    });
+    })
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      { theme: "outline", size: "medium" }
+    )
+  },[])
 
-      google.accounts.id.renderButton(
-        document.getElementById("signInDiv"),
-        { theme: "outline", size: "medium" }
-      )
-  }, [])
     return <div className="HeaderContainer" 
       onMouseLeave={e => {
       setStyle({display: 'none'})
       }}>
             <header className="App-header">
               <div className="Title">
-                <Link to="/">Course Project</Link> 
+                <Link to="/">Course React Project</Link> 
               </div>
               <div className="Progress">
                 <div className="innerProgress" style={{'width': `${progress}%`}}><p>Progress: <strong>{Math.round(progress)}%</strong></p></div>
@@ -58,12 +54,7 @@ function Header({lessons}) {
               <img src={user.picture} alt="Profile"/>
               <p onClick={handleSignOut} style={logOutStyle}>Sign Out</p>
               </div>
-             
               } 
-               
-              
-                  
-                
               </div>
             </header>
           </div>

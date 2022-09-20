@@ -48,19 +48,49 @@ const App = () => {
     const [session, setSession] = useState (
         {   
             "isLogged": false,
+            "email": "",
             "activeID": 1,
-            "completedLessons": [1,2,3,4,5],
+            "completedLessons": [1,2,3],
         }
     )
-
+      
     useEffect(() => {
         Axios.get("http://localhost:3001/api").then((response) => {
             setLessons(response.data)
         })
+        Axios.get("http://localhost:3001/api/session").then((responsee) => {
+            let sessionData = responsee.data[0]
+            setSession((prev) => ({
+                ...prev, 
+                activeID: sessionData.activeID,
+                completedLessons: sessionData.completedLessons.split("-").map(str => Number(str))
+            }))
+        })
     }, [])
 
+ 
+       
+        useEffect(() => {
+            const activeID = session.activeID
+            const completedLessons = session.completedLessons.join("-")
+            Axios.post("http://localhost:3001/api/update", {
+                activeID: activeID,
+                completedLessons: completedLessons
+            })
+        }, [session.activeID, session.completedLessons])
+
+
+
+ 
     let current = session.activeID
 
+    const handleSignIn = (email) => {
+        setSession((prev) => ({
+            ...prev, 
+            isLogged: true,
+            email: email
+        }))
+    }
     const increment = () => {     
         current++
         clickLesson(current)
@@ -97,7 +127,7 @@ const App = () => {
        
         <div className="App">
           
-            <Header lessons={lessons}/>
+            <Header lessons={lessons} session={session} handleSignIn={handleSignIn} />
             <Routes>
             <Route path="/" element={<Lessons lessons={lessons} session={session} clickLesson={clickLesson} markComplete={markComplete} 
             markUnComplete={markUnComplete} current={current} increment={increment} decrement={decrement} />}  />

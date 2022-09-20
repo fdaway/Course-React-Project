@@ -2,7 +2,7 @@ import LessonCard from './LessonCard.jsx'
 // import { Link } from 'react-router-dom'
 import { FaCheck } from 'react-icons/fa'
 
-const  Lessons  = ({ lessons, session, clickLesson, markComplete, markUnComplete, increment, decrement, current }) => {
+const  Lessons  = ({ lessons, session, clickLesson, markComplete, markUnComplete, increment, decrement }) => {
     
     return <div className="ContentContainer">
 
