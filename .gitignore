@@ -7,7 +7,6 @@
 
 # sensitive backend
 /server
-
 # testing
 /coverage
 

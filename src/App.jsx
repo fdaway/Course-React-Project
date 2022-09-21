@@ -6,7 +6,6 @@ import Contacts from './pages/contacts'
 import Header from './Header'
 import Footer from './Footer'
 import Lessons from './Lessons.jsx'
- 
 import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Axios from 'axios'
@@ -48,12 +47,12 @@ const App = () => {
     const [session, setSession] = useState (
         {   
             "isLogged": false,
-            "email": "",
+            "email": "guest",
             "activeID": 1,
-            "completedLessons": [1,2,3],
+            "completedLessons": [],
         }
     )
-      
+
     useEffect(() => {
         Axios.get("http://localhost:3001/api").then((response) => {
             setLessons(response.data)
@@ -66,22 +65,30 @@ const App = () => {
                 completedLessons: sessionData.completedLessons.split("-").map(str => Number(str))
             }))
         })
-    }, [])
+    }
+    , [])
 
- 
+    useEffect (() => {
+        Axios.get("http://localhost:3001/api/session").then((responsee) => {
+            let sessionData = responsee.data[0]
+            setSession((prev) => ({
+                ...prev, 
+                activeID: sessionData.activeID,
+                completedLessons: sessionData.completedLessons.split("-").map(str => Number(str))
+            }))
+        })
+    }, [session.isLogged])
     const updateSession = () => { 
-        console.log("Update session")
         var activeID = session.activeID
         var completedLessons = session.completedLessons.join("-")
+        var email = session.email
         Axios.post("http://localhost:3001/api/update", {
             activeID: activeID,
-            completedLessons: completedLessons
+            completedLessons: completedLessons,
+            email: email
         })
     }
         
-
-
- 
     let current = session.activeID
 
     const handleSignIn = (email) => {
@@ -114,7 +121,6 @@ const App = () => {
         }))
     } 
     
-  
     const markUnComplete = () => {
         setSession(prev => ({
             ...prev,
@@ -122,9 +128,7 @@ const App = () => {
             }))
         } 
 
-
   return (
-       
         <div className="App">
             <p onClick={updateSession} style={{cursor: 'pointer'}}>Update</p>
             <Header lessons={lessons} session={session} handleSignIn={handleSignIn} />

@@ -14,7 +14,7 @@ const Header = ({ lessons, session, handleSignIn }) => {
   function handlecallBackResponse(response) {
     let identity = jwt_decode(response.credential)
      setUser(identity)
-    //handleIdentityFetch(identity)
+     handleSignIn(identity.email)
   }
  
   useEffect(() => {
@@ -27,7 +27,7 @@ const Header = ({ lessons, session, handleSignIn }) => {
       document.getElementById("signInDiv"),
       { theme: "outline", size: "medium" }
     )
-  },[])
+  }, [])
 
     return <div className="HeaderContainer" 
       onMouseLeave={e => {
