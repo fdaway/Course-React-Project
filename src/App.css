@@ -60,7 +60,7 @@ body {
 .App-header {
   display: flex;
   justify-content: space-between;
-  max-width: 77rem;
+  max-width: 74rem;
   margin: 0 auto;
   align-items: center;
   height: 2rem;
@@ -177,10 +177,36 @@ body {
   }
 .ContentContainer {
   margin: 2em auto 0;
-  min-width: 77rem;
+  min-width: 74rem;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+.CabinetContainer {
+  margin: 2em auto 0;
+  min-width: 74rem;
+ 
+}
+.Cabinet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.Cabinet h2 {
+  font-size: 1.4rem;
+}
+.Cabinet h1 {
+  margin-bottom: 2rem;
+  color: red;
+}
+.Cabinet span {
+  color: #666;
+}
+.Cabinet img {
+  border-radius: 50%; 
+  width: 96px;
+  margin: 0 .7rem;
 }
 .Cards {
   max-height:80vh;

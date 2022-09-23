@@ -58,22 +58,7 @@ const App = () => {
         Axios.get("http://localhost:3001/api").then((response) => {
             setLessons(response.data)
         })
-        Axios.get("http://localhost:3001/api/session", {
-            params: {
-                email: 'guest'
-            }
-        }).then((responsee) => {
-             
-            let sessionData = responsee.data[0]
-            console.log(sessionData)
-            setSession((prev) => ({
-                ...prev, 
-                activeID: sessionData.activeID,
-                completedLessons: sessionData.completedLessons.split("-").map(str => Number(str))
-            }))
-        })
-    }
-    , [])
+    }, [])
 
     useEffect (() => {
         Axios.get("http://localhost:3001/api/session",  {
@@ -87,35 +72,57 @@ const App = () => {
                 activeID: sessionData.activeID,
                 completedLessons: sessionData.completedLessons.split("-").map(str => Number(str))
             }))
-        }, [session.email])
+        })
     }, [session.email])
 
-    const updateSession = () => { 
-        var activeID = session.activeID
-        var completedLessons = session.completedLessons.join("-")
-        var email = session.email
-        Axios.post("http://localhost:3001/api/update", {
-            activeID: activeID,
-            completedLessons: completedLessons,
-            email: email
-        })
-    }
+    // useEffect (() => { 
+    //     var activeID = session.activeID
+    //     var completedLessons = session.completedLessons.join("-")
+    //     var email = session.email
+    //     Axios.post("http://localhost:3001/api/update", {
+    //         activeID: activeID,
+    //         completedLessons: completedLessons,
+    //         email: email
+    //     })
+    // }, [session])
+    const updateSession = () => {
+         
+            var activeID = session.activeID
+            var completedLessons = session.completedLessons.join("-")
+            var email = session.email
+            Axios.post("http://localhost:3001/api/update", {
+                activeID: activeID,
+                completedLessons: completedLessons,
+                email: email
+            })
+            console.log('Test callback')
+        }   
+     
+   
         
     let current = session.activeID
 
-    const handleSignIn = (email) => {
+    const handleSignIn = (identity) => {
         setSession((prev) => ({
             ...prev, 
             isLogged: true,
-            email: email
+            email: identity.email,
+            name: identity.name,
+            avatar: identity.picture
         }))
     }
     const handleLogOut = () => {
         setSession((prev) => ({
             ...prev, 
-            email: 'guest'
+            isLogged: false,
+            email: 'guest',
+            activeID: 1,
+            completedLessons: "0",
+            name: "",
+            avatar: ""
         }))
     }
+
     const increment = () => {     
         current++
         clickLesson(current)
@@ -147,15 +154,15 @@ const App = () => {
         } 
 
   return (
-        <div className="App">
-            <p onClick={updateSession} style={{cursor: 'pointer', borderRadius: '3px', background: '#f1f1f1', padding: '.3rem', position: 'absolute', margin: '.2rem', top: '40%'}}>Update</p>
+        <div className="App" onClick={updateSession}>
+            {/* <p onClick={updateSession} style={{cursor: 'pointer', borderRadius: '3px', background: '#f1f1f1', padding: '.3rem', position: 'absolute', margin: '.2rem', top: '40%'}}>Update</p> */}
             <Header lessons={lessons} session={session} handleSignIn={handleSignIn} handleLogOut={handleLogOut}/>
             <Routes>
             <Route path="/" element={<Lessons lessons={lessons} session={session} clickLesson={clickLesson} markComplete={markComplete} 
             markUnComplete={markUnComplete} current={current} increment={increment} decrement={decrement} />}  />
             <Route path="/start" element={<Start />}  />
             <Route path="/login" element={<Login />} />
-            <Route path="/cabinet" element={<Cabinet session={session}/>}   />
+            <Route path="/cabinet" element={<Cabinet session={session} handleLogOut={handleLogOut}/>}   />
             <Route path="/contacts" element={<Contacts />}   />
             <Route path="/finish" element={<Finish />}  />
             </Routes>

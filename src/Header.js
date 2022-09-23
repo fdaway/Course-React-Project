@@ -7,8 +7,8 @@ const Header = ({ lessons, session, handleSignIn, handleLogOut }) => {
   let progress = 0
   progress = (session.completedLessons.length-1) / lessons.length * 100
   const [ user, setUser ] = useState({});
-  const [logOutStyle, setStyle] = useState({})
-
+   
+  
   function handleSignOut(){
     setUser({})
     handleLogOut()
@@ -16,7 +16,7 @@ const Header = ({ lessons, session, handleSignIn, handleLogOut }) => {
   function handlecallBackResponse(response) {
     let identity = jwt_decode(response.credential)
      setUser(identity)
-     handleSignIn(identity.email)
+     handleSignIn(identity)
   }
  
   useEffect(() => {
@@ -31,10 +31,7 @@ const Header = ({ lessons, session, handleSignIn, handleLogOut }) => {
     )
   }, [])
 
-    return <div className="HeaderContainer" 
-      onMouseLeave={e => {
-      setStyle({display: 'none'})
-      }}>
+    return <div className="HeaderContainer">
             <header className="App-header">
               <div className="Title">
                 <Link to="/">Course React Project</Link> 
@@ -44,19 +41,16 @@ const Header = ({ lessons, session, handleSignIn, handleLogOut }) => {
               </div>
               <div className="StartNav">
 
-              <div id="signInDiv" style={Object.keys(user).length !== 0 ? {display: 'none'} : {}}></div>
-               
-              { Object.keys(user).length !== 0 &&
-              <div className="userInfo"
-              onClick={e => {
-              setStyle({display: 'block', color: 'rgb(4, 131, 221)', fontWeight: '600'});
-              }}
-              >
-              <h4>{user.name}</h4>
-              <img src={user.picture} alt="Profile"/>
-              <p onClick={handleSignOut} style={{color: '#0099f5', fontWeight: '600'}}>Sign Out</p>
+              <div id="signInDiv" style={session.isLogged ? {display: 'none'} : {}}></div>
+              <Link to="/cabinet">
+              { session.isLogged &&
+              
+              <div className="userInfo">
+              <h4>{session.name}</h4>
+              <img src={session.avatar} alt="Profile"/>
               </div>
-              } 
+              
+              } </Link>
               </div>
             </header>
           </div>
