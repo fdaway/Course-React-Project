@@ -1,5 +1,4 @@
 import LessonCard from './LessonCard.jsx'
-// import { Link } from 'react-router-dom'
 import { FaCheck } from 'react-icons/fa'
 
 const  Lessons  = ({ lessons, session, clickLesson, markComplete, markUnComplete, increment, decrement }) => {
@@ -14,10 +13,7 @@ clickLesson={clickLesson} />
 </div>
  
 <div className="LessonsPage">
- {/* <div style={{position: 'relative', width: '100%', height: '500px' }}>
- <iframe width="100%" height="100%" src="https://www.youtube.com/embed/GLSr0BAlndM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
- </div> */}
-
+ 
 <div className="LessonContainer">  
 {lessons.map((lesson) => (   
     lesson.id === session.activeID ? 

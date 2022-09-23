@@ -1,5 +1,6 @@
 import './App.css'
 import Login from './pages/login'
+import Cabinet from './pages/cabinet'
 import Start from './pages/start'
 import Finish from './pages/finish'
 import Contacts from './pages/contacts'
@@ -47,9 +48,9 @@ const App = () => {
     const [session, setSession] = useState (
         {   
             "isLogged": false,
-            "email": "guest",
+            "email": 'guest',
             "activeID": 1,
-            "completedLessons": [],
+            "completedLessons": [0],
         }
     )
 
@@ -57,8 +58,14 @@ const App = () => {
         Axios.get("http://localhost:3001/api").then((response) => {
             setLessons(response.data)
         })
-        Axios.get("http://localhost:3001/api/session").then((responsee) => {
+        Axios.get("http://localhost:3001/api/session", {
+            params: {
+                email: 'guest'
+            }
+        }).then((responsee) => {
+             
             let sessionData = responsee.data[0]
+            console.log(sessionData)
             setSession((prev) => ({
                 ...prev, 
                 activeID: sessionData.activeID,
@@ -69,15 +76,20 @@ const App = () => {
     , [])
 
     useEffect (() => {
-        Axios.get("http://localhost:3001/api/session").then((responsee) => {
+        Axios.get("http://localhost:3001/api/session",  {
+            params: {
+                email: session.email
+            }
+        }).then((responsee) => {
             let sessionData = responsee.data[0]
             setSession((prev) => ({
                 ...prev, 
                 activeID: sessionData.activeID,
                 completedLessons: sessionData.completedLessons.split("-").map(str => Number(str))
             }))
-        })
-    }, [session.isLogged])
+        }, [session.email])
+    }, [session.email])
+
     const updateSession = () => { 
         var activeID = session.activeID
         var completedLessons = session.completedLessons.join("-")
@@ -96,6 +108,12 @@ const App = () => {
             ...prev, 
             isLogged: true,
             email: email
+        }))
+    }
+    const handleLogOut = () => {
+        setSession((prev) => ({
+            ...prev, 
+            email: 'guest'
         }))
     }
     const increment = () => {     
@@ -130,14 +148,15 @@ const App = () => {
 
   return (
         <div className="App">
-            <p onClick={updateSession} style={{cursor: 'pointer'}}>Update</p>
-            <Header lessons={lessons} session={session} handleSignIn={handleSignIn} />
+            <p onClick={updateSession} style={{cursor: 'pointer', borderRadius: '3px', background: '#f1f1f1', padding: '.3rem', position: 'absolute', margin: '.2rem', top: '40%'}}>Update</p>
+            <Header lessons={lessons} session={session} handleSignIn={handleSignIn} handleLogOut={handleLogOut}/>
             <Routes>
             <Route path="/" element={<Lessons lessons={lessons} session={session} clickLesson={clickLesson} markComplete={markComplete} 
             markUnComplete={markUnComplete} current={current} increment={increment} decrement={decrement} />}  />
             <Route path="/start" element={<Start />}  />
-            <Route path="/login" element={<Login />}  />
-            <Route path="/contacts" element={<Contacts />}  />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cabinet" element={<Cabinet session={session}/>}   />
+            <Route path="/contacts" element={<Contacts />}   />
             <Route path="/finish" element={<Finish />}  />
             </Routes>
             <Footer /> 

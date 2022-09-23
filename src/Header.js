@@ -2,14 +2,16 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import jwt_decode from 'jwt-decode'
 
-const Header = ({ lessons, session, handleSignIn }) => {
+const Header = ({ lessons, session, handleSignIn, handleLogOut }) => {
  
-  let progress = session.completedLessons.length / lessons.length * 100
+  let progress = 0
+  progress = (session.completedLessons.length-1) / lessons.length * 100
   const [ user, setUser ] = useState({});
-  const [logOutStyle, setStyle] = useState({display:'none'})
+  const [logOutStyle, setStyle] = useState({})
 
   function handleSignOut(){
     setUser({})
+    handleLogOut()
   }
   function handlecallBackResponse(response) {
     let identity = jwt_decode(response.credential)
@@ -52,7 +54,7 @@ const Header = ({ lessons, session, handleSignIn }) => {
               >
               <h4>{user.name}</h4>
               <img src={user.picture} alt="Profile"/>
-              <p onClick={handleSignOut} style={logOutStyle}>Sign Out</p>
+              <p onClick={handleSignOut} style={{color: '#0099f5', fontWeight: '600'}}>Sign Out</p>
               </div>
               } 
               </div>
