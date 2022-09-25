@@ -1,5 +1,5 @@
 body {
-  background: #f8fcff;
+  background: #fff;
   }
   h1, h2, ul,li, p {
     margin: 0;
@@ -26,12 +26,20 @@ body {
   font-size: .72rem;
 }
 .App {
-  text-align: left;
-  font-size: calc(10px + 1.6vmin);
-  font-family: sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+    box-shadow: 0px 0px 80px 0px rgb(192 231 255), 4px 7px 150px 5px #e2f4ff;
+    text-align: left;
+    font-size: calc(10px + 1.6vmin);
+    font-family: sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-width: 82rem;
+    margin: 0 auto;
+    background: #ecf8ff;
+    overflow: hidden;
+    border: 2px solid #ffffff;
+    border-radius: 0.3rem;
+    box-sizing: border-box;
 }
 .VerticalContainer {
   height: 72vh;
@@ -60,7 +68,7 @@ body {
 .App-header {
   display: flex;
   justify-content: space-between;
-  max-width: 74rem;
+  max-width: 79rem;
   margin: 0 auto;
   align-items: center;
   height: 2rem;
@@ -177,7 +185,7 @@ body {
   }
 .ContentContainer {
   margin: 2em auto 0;
-  min-width: 74rem;
+  min-width: 79rem;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -273,7 +281,7 @@ body {
   border-radius: 3px;
   min-width: 360px;  
   flex: 1;
-  margin-left: 2em;
+  margin-left: 1.4em;
   height: fit-content;
 }
 .LessonsPage h1 {
@@ -332,6 +340,32 @@ iframe {
   padding: 0.2rem 0 0 0;
   color: #666;
 }
+.LockIcon {
+  color: #999;
+  font-size: .88rem
+}
+.LockBigIcon {
+  color: #e1efff;;
+  font-size: 5.88rem
+}
+.Lock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  text-align: center;
+}
+.Lock h2,h3 {
+  margin: 0;
+  padding: 0;
+}
+.Lock h2 {
+  font-size: 2.32rem;
+}
+.Lock h3 {
+  font-size: .88rem;
+}
 .CompleteIcon {
   font-size: .8rem;
   margin-bottom: -0.07rem;
@@ -344,7 +378,7 @@ iframe {
 }
 .Footer {
   margin-top: auto;
-  box-shadow: 0px -7px 15px rgb(0 0 0 / 6%), 0px -4px 4px rgb(0 0 0 / 10%);
+  box-shadow: 0px -5px 10px rgb(43 43 43 / 6%), 0px -3px 11px 0px rgb(0 0 0 / 10%);
   font-size: 0.5em;
   padding: 1em;
 }
@@ -381,7 +415,7 @@ iframe {
 .CardInfo {
   display: flex;
 }
-@media only screen and (max-width: 1258px) {
+@media only screen and (max-width: 1308px) {
   .Cards {
     width: 70%;
     padding: 0 1em;

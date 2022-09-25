@@ -1,22 +1,15 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import jwt_decode from 'jwt-decode'
 
-const Header = ({ lessons, session, handleSignIn, handleLogOut }) => {
+const Header = ({ lessons, session, handleSignIn }) => {
  
   let progress = 0
   progress = (session.completedLessons.length-1) / lessons.length * 100
-  const [ user, setUser ] = useState({});
-   
-  
-  function handleSignOut(){
-    setUser({})
-    handleLogOut()
-  }
+
   function handlecallBackResponse(response) {
     let identity = jwt_decode(response.credential)
-     setUser(identity)
-     handleSignIn(identity)
+    handleSignIn(identity)
   }
  
   useEffect(() => {
@@ -40,17 +33,14 @@ const Header = ({ lessons, session, handleSignIn, handleLogOut }) => {
                 <div className="innerProgress" style={{'width': `${progress}%`}}><p>Progress: <strong>{Math.round(progress)}%</strong></p></div>
               </div>
               <div className="StartNav">
-
-              <div id="signInDiv" style={session.isLogged ? {display: 'none'} : {}}></div>
-              <Link to="/cabinet">
-              { session.isLogged &&
-              
-              <div className="userInfo">
-              <h4>{session.name}</h4>
-              <img src={session.avatar} alt="Profile"/>
-              </div>
-              
-              } </Link>
+                <div id="signInDiv" style={session.isLogged ? {display: 'none'} : {}}></div>
+                <Link to="/cabinet">
+                { session.isLogged &&
+                <div className="userInfo">
+                  <h4>{session.name}</h4>
+                  <img src={session.avatar} alt="Profile"/>
+                </div>
+                } </Link>
               </div>
             </header>
           </div>

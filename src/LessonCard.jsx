@@ -1,13 +1,17 @@
-import { FaPlayCircle, FaCheckCircle } from 'react-icons/fa'
+import { FaPlayCircle, FaCheckCircle, FaLock } from 'react-icons/fa'
 
 const LessonCard = ({ lesson, session, clickLesson }) => {
     return <div id={lesson.id} className="Card"  style={lesson.id === session.activeID ? cardStyleActive : {}}
             onClick={()=> clickLesson(lesson.id)}  >
                 <div className="CardLine1">
                 <p className="LessonNumber" >Lesson {lesson.id}</p>
-                <p className="LessonNumber" >{session.completedLessons.includes(lesson.id) ? <FaCheckCircle className="CheckIcon" /> : ''}</p>
+                <p>{session.completedLessons.includes(lesson.id) ? <FaCheckCircle className="CheckIcon" /> : ''}</p>
                 </div>
+                <div className="CardLine1">
                 <p className="LessonTitle"  >{lesson.title}</p>
+                <p >{lesson.isLocked && !session.isLogged? <FaLock className="LockIcon" /> : ''}</p>
+                </div>
+                
                 <p className="LessonDuration"  ><FaPlayCircle className="PlayIcon" /> {lesson.duration}</p>
             </div> 
 }

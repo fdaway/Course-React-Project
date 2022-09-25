@@ -10,6 +10,7 @@ import Lessons from './Lessons.jsx'
 import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Axios from 'axios'
+
 const App = () => {
     const [lessons, setLessons] = useState([
         {
@@ -75,18 +76,7 @@ const App = () => {
         })
     }, [session.email])
 
-    // useEffect (() => { 
-    //     var activeID = session.activeID
-    //     var completedLessons = session.completedLessons.join("-")
-    //     var email = session.email
-    //     Axios.post("http://localhost:3001/api/update", {
-    //         activeID: activeID,
-    //         completedLessons: completedLessons,
-    //         email: email
-    //     })
-    // }, [session])
     const updateSession = () => {
-         
             var activeID = session.activeID
             var completedLessons = session.completedLessons.join("-")
             var email = session.email
@@ -95,11 +85,8 @@ const App = () => {
                 completedLessons: completedLessons,
                 email: email
             })
-            console.log('Test callback')
         }   
      
-   
-        
     let current = session.activeID
 
     const handleSignIn = (identity) => {
@@ -108,7 +95,8 @@ const App = () => {
             isLogged: true,
             email: identity.email,
             name: identity.name,
-            avatar: identity.picture
+            avatar: identity.picture,
+            userGID: identity.sub
         }))
     }
     const handleLogOut = () => {
@@ -117,7 +105,7 @@ const App = () => {
             isLogged: false,
             email: 'guest',
             activeID: 1,
-            completedLessons: "0",
+            completedLessons: [0],
             name: "",
             avatar: ""
         }))
@@ -127,6 +115,7 @@ const App = () => {
         current++
         clickLesson(current)
     }
+
     const decrement = () => {
        current--
        clickLesson(current)

@@ -24,5 +24,4 @@ const Lesson = ({ lessons, lesson, markComplete, current, increment, decrement})
 
 const displayNone = {display: 'none'}
 
-
 export default Lesson;

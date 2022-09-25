@@ -1,5 +1,5 @@
 import LessonCard from './LessonCard.jsx'
-import { FaCheck } from 'react-icons/fa'
+import { FaCheck, FaLock } from 'react-icons/fa'
 
 const  Lessons  = ({ lessons, session, clickLesson, markComplete, markUnComplete, increment, decrement }) => {
     
@@ -13,47 +13,53 @@ clickLesson={clickLesson} />
 </div>
  
 <div className="LessonsPage">
- 
-<div className="LessonContainer">  
-{lessons.map((lesson) => (   
-    lesson.id === session.activeID ? 
-    <h1 key={lesson.id}>{lesson.id}. {lesson.title}</h1> 
-    : null
-    ))}
+    {lessons[session.activeID-1].isLocked && !session.isLogged? 
+     <div className="Lock">
+        <FaLock className="LockBigIcon" />
+        <h2>Sign In</h2>
+        <h3>To view the lesson</h3>
+     </div>
+    :
+    <div className="LessonContainer">  
+    {lessons.map((lesson) => (   
+        lesson.id === session.activeID ? 
+        <h1 key={lesson.id}>{lesson.id}. {lesson.title}</h1> 
+        : null
+        ))}
 
- 
+    <div className="LessonNav">
+    <button className="ButtonGrey" 
+    style={session.activeID === 1 ? displayNone : { } }
+    onClick={decrement}
+    >⬅</button>
 
-<div className="LessonNav">
-<button className="ButtonGrey" 
-style={session.activeID === 1 ? displayNone : { } }
-onClick={decrement}
->⬅</button>
+    <button className="ButtonBlue Complete"
+    style={session.completedLessons.includes(session.activeID) ? displayNone : {}}
+    onClick={markComplete}>
+    <FaCheck className="CompleteIcon" /> {'Mark Complete'} </button>
 
-<button className="ButtonBlue Complete"
-style={session.completedLessons.includes(session.activeID) ? displayNone : {}}
-onClick={markComplete}>
-<FaCheck className="CompleteIcon" /> {'Mark Complete'} </button>
+    <button className="ButtonBlue Complete"
+    style={ session.completedLessons.includes(session.activeID) ? {} : displayNone}
+    onClick={markUnComplete}>
+    {'Mark as not complete'}</button>
 
-<button className="ButtonBlue Complete"
-style={ session.completedLessons.includes(session.activeID) ? {} : displayNone}
-onClick={markUnComplete}>
-{'Mark as not complete'}</button>
+    <div>
+    {/* <Link to="/finish">
+    <button className="ButtonBlue Complete" onClick={finish}
+    style={progress >= 100 && current === lessons.length? {} : displayNone  }
+    >
+    {'Finish Course'} </button>
+    </Link> */}
 
-<div>
-{/* <Link to="/finish">
-<button className="ButtonBlue Complete" onClick={finish}
-style={progress >= 100 && current === lessons.length? {} : displayNone  }
- >
-{'Finish Course'} </button>
-</Link> */}
-
-<button className="ButtonGrey" 
-style={session.activeID===lessons.length ? displayNone : { } }
-onClick={increment}
->➡</button>
-</div>
-</div>
-</div>
+    <button className="ButtonGrey" 
+    style={session.activeID===lessons.length ? displayNone : { } }
+    onClick={increment}
+    >➡</button>
+    </div>
+    </div>
+    </div>
+}
+    
 </div>
 </div>
 }
