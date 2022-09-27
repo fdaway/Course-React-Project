@@ -76,16 +76,36 @@ const App = () => {
         })
     }, [session.email])
 
-    const updateSession = () => {
-            var activeID = session.activeID
-            var completedLessons = session.completedLessons.join("-")
-            var email = session.email
-            Axios.post("http://localhost:3001/api/update", {
+   
+       useEffect ( () => {
+            if(session.isLogged){
+                var activeID = session.activeID
+                var completedLessons = session.completedLessons.join("-")
+                var email = session.email            
+                Axios.post("http://localhost:3001/api/update", {
                 activeID: activeID,
                 completedLessons: completedLessons,
                 email: email
             })
-        }   
+            console.log("Update")
+            console.log(session)
+            }
+        }, [session]) 
+        
+ 
+        // const updateSession = () => {
+        //     var activeID = session.activeID
+        //     var completedLessons = session.completedLessons.join("-")
+        //     var email = session.email
+             
+        //         Axios.post("http://localhost:3001/api/update", {
+        //         activeID: activeID,
+        //         completedLessons: completedLessons,
+        //         email: email
+        //     }) 
+        // }   
+        // )
+   
      
     let current = session.activeID
 
@@ -143,7 +163,7 @@ const App = () => {
         } 
 
   return (
-        <div className="App" onClick={updateSession}>
+        <div className="App" >
             {/* <p onClick={updateSession} style={{cursor: 'pointer', borderRadius: '3px', background: '#f1f1f1', padding: '.3rem', position: 'absolute', margin: '.2rem', top: '40%'}}>Update</p> */}
             <Header lessons={lessons} session={session} handleSignIn={handleSignIn} handleLogOut={handleLogOut}/>
             <Routes>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react'
+//import { useEffect } from 'react'
 import jwt_decode from 'jwt-decode'
 
 const Header = ({ lessons, session, handleSignIn }) => {
@@ -7,22 +7,23 @@ const Header = ({ lessons, session, handleSignIn }) => {
   let progress = 0
   progress = (session.completedLessons.length-1) / lessons.length * 100
 
-  function handlecallBackResponse(response) {
+  function handleCredentialResponse(response) {
     let identity = jwt_decode(response.credential)
     handleSignIn(identity)
   }
- 
-  useEffect(() => {
-    /* global google */
+  window.onload = function () {
+    const google = window.google
     google.accounts.id.initialize({
       client_id: "1023936046196-eko5tfnruegbdv2efdn4eb13kbfn6vdd.apps.googleusercontent.com",
-      callback: handlecallBackResponse
-    })
+      callback: handleCredentialResponse
+    });
     google.accounts.id.renderButton(
-      document.getElementById("signInDiv"),
-      { theme: "outline", size: "medium" }
-    )
-  }, [])
+      document.getElementById("g-signin2"),
+      { theme: "outline", size: "medium" }  // customization attributes
+    );
+    google.accounts.id.prompt(); // also display the One Tap dialog
+  }
+
 
     return <div className="HeaderContainer">
             <header className="App-header">
@@ -33,7 +34,7 @@ const Header = ({ lessons, session, handleSignIn }) => {
                 <div className="innerProgress" style={{'width': `${progress}%`}}><p>Progress: <strong>{Math.round(progress)}%</strong></p></div>
               </div>
               <div className="StartNav">
-                <div id="signInDiv" style={session.isLogged ? {display: 'none'} : {}}></div>
+                <div id="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style={session.isLogged ? {display: 'none'} : {}}></div>
                 <Link to="/cabinet">
                 { session.isLogged &&
                 <div className="userInfo">

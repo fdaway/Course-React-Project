@@ -1,7 +1,8 @@
 import LessonCard from './LessonCard.jsx'
+// import GoogleSignIn from './Googlesignin.jsx'
 import { FaCheck, FaLock } from 'react-icons/fa'
 
-const  Lessons  = ({ lessons, session, clickLesson, markComplete, markUnComplete, increment, decrement }) => {
+const  Lessons  = ({ lessons, session, clickLesson, markComplete, markUnComplete, increment, decrement, handleSignIn }) => {
     
     return <div className="ContentContainer">
 
@@ -16,8 +17,10 @@ clickLesson={clickLesson} />
     {lessons[session.activeID-1].isLocked && !session.isLogged? 
      <div className="Lock">
         <FaLock className="LockBigIcon" />
-        <h2>Sign In</h2>
-        <h3>To view the lesson</h3>
+         
+        
+        {/* <GoogleSignIn handleSignIn={handleSignIn}/> */}
+        <h3>Sign in to view the lesson</h3>
      </div>
     :
     <div className="LessonContainer">  
