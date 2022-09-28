@@ -2,6 +2,7 @@ import './App.css'
 import Login from './pages/login'
 import Cabinet from './pages/cabinet'
 import Start from './pages/start'
+import PrivacyPolicy from './pages/privacy-policy'
 import Finish from './pages/finish'
 import Contacts from './pages/contacts'
 import Header from './Header'
@@ -76,36 +77,19 @@ const App = () => {
         })
     }, [session.email])
 
-   
-       useEffect ( () => {
-            if(session.isLogged){
-                var activeID = session.activeID
-                var completedLessons = session.completedLessons.join("-")
-                var email = session.email            
-                Axios.post("http://localhost:3001/api/update", {
-                activeID: activeID,
-                completedLessons: completedLessons,
-                email: email
+    useEffect ( () => {
+        if(session.email !== "guest"){
+            var activeID = session.activeID
+            var completedLessons = session.completedLessons.join("-")
+            var email = session.email            
+            Axios.post("http://localhost:3001/api/update", {
+            activeID: activeID,
+            completedLessons: completedLessons,
+            email: email
             })
             console.log("Update")
-            console.log(session)
-            }
-        }, [session]) 
-        
- 
-        // const updateSession = () => {
-        //     var activeID = session.activeID
-        //     var completedLessons = session.completedLessons.join("-")
-        //     var email = session.email
-             
-        //         Axios.post("http://localhost:3001/api/update", {
-        //         activeID: activeID,
-        //         completedLessons: completedLessons,
-        //         email: email
-        //     }) 
-        // }   
-        // )
-   
+        }
+    }, [session]) 
      
     let current = session.activeID
 
@@ -153,6 +137,7 @@ const App = () => {
         ...prev,
         completedLessons:  [...prev.completedLessons, session.activeID]
         }))
+        session.activeID !== lessons.length && increment()
     } 
     
     const markUnComplete = () => {
@@ -164,7 +149,6 @@ const App = () => {
 
   return (
         <div className="App" >
-            {/* <p onClick={updateSession} style={{cursor: 'pointer', borderRadius: '3px', background: '#f1f1f1', padding: '.3rem', position: 'absolute', margin: '.2rem', top: '40%'}}>Update</p> */}
             <Header lessons={lessons} session={session} handleSignIn={handleSignIn} handleLogOut={handleLogOut}/>
             <Routes>
             <Route path="/" element={<Lessons lessons={lessons} session={session} clickLesson={clickLesson} markComplete={markComplete} 
@@ -173,6 +157,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/cabinet" element={<Cabinet session={session} handleLogOut={handleLogOut}/>}   />
             <Route path="/contacts" element={<Contacts />}   />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/finish" element={<Finish />}  />
             </Routes>
             <Footer /> 

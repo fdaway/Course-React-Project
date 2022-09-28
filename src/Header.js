@@ -11,17 +11,17 @@ const Header = ({ lessons, session, handleSignIn }) => {
     let identity = jwt_decode(response.credential)
     handleSignIn(identity)
   }
-  window.onload = function () {
+  window.onload = () => {
     const google = window.google
     google.accounts.id.initialize({
-      client_id: "1023936046196-eko5tfnruegbdv2efdn4eb13kbfn6vdd.apps.googleusercontent.com",
+      client_id: "1023936046196-c55n0ke1qm3goi70ih1khh0hoaqqo1gu.apps.googleusercontent.com",
       callback: handleCredentialResponse
     });
     google.accounts.id.renderButton(
       document.getElementById("g-signin2"),
-      { theme: "outline", size: "medium" }  // customization attributes
+      { theme: "outline", size: "medium" }  
     );
-    google.accounts.id.prompt(); // also display the One Tap dialog
+    // google.accounts.id.prompt();  
   }
 
 
