@@ -38,6 +38,7 @@ body {
     background: #ecf8ff;
     overflow: hidden;
     border: 2px solid #ffffff;
+    border-top: 0;
     border-radius: 0.3rem;
     box-sizing: border-box;
 }
@@ -63,7 +64,10 @@ body {
   background: white;
   box-shadow: 0 10px 20px rgb(117 184 227), 0 6px 6px #75b8e3;
   padding: 12px 0;
-  height: 2rem;     
+  height: 2rem;    
+  background: #f0f4ff;
+  overflow: hidden;
+  z-index: 5; 
 }
 .App-header {
   display: flex;
@@ -97,7 +101,7 @@ body {
   min-width: 90px;
  }
 .Title {
-  font: bold 1.5rem arial, sans-serif;
+  font: bold 1.42rem arial, sans-serif;
   background-color: #565656;
   color: transparent;
   text-shadow: 2px 2px 3px rgba(255,255,255,0.5);
@@ -118,8 +122,9 @@ body {
   /* // transform: scale(.35); */
   border-radius: 50%; 
   width: 2rem;
-  margin: 0 .7rem;
+  margin: 0 0 0 .7rem;
 }
+page
 
 .NakedButtonBlack {
   cursor: pointer;
@@ -185,6 +190,7 @@ body {
   }
 .ContentContainer {
   margin: 2em auto 0;
+  margin-top: 1.6em;
   min-width: 79rem;
   display: flex;
   justify-content: space-between;
@@ -196,14 +202,23 @@ body {
  
 }
 .Cabinet {
-  width: fit-content;
-  
-  margin: 0 auto;
+    width: fit-content;
+    margin: 0 auto;
+    border-radius: 19% 84% 74% 32% / 17% 26% 80% 84%;
+    box-shadow: 0px 3px 50px 7px rgb(163 218 253), 0 6px 6px #9cd4f9;
+    padding: 1rem 5rem 5rem 5rem;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: 0 auto;
+    background: #fff;
+    background: #f0f4ff;
+    z-index: 0;
 }
 .CabinetFlex {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;  
+  flex-wrap: wrap; 
+  flex-direction: column; 
 }
 .Cabinet h2 {
   font-size: 1.1rem;
@@ -212,7 +227,7 @@ body {
 }
 .Cabinet h1 {
   margin-bottom: 1.2rem;
-  padding-left: 0.4rem;
+ 
 }
 .Cabinet span {
   color: #666;
@@ -222,20 +237,22 @@ body {
 .Cabinet img {
   border-radius: 50%; 
   width: 96px;
-  margin-right: 1.2rem;
+
 }
 .signOut {
   color: #0099f5;
   font-weight: 600; 
   font-size: 1.1rem;
   margin-top: 1.2rem;
-  margin-left: .80rem;
+ 
 }
 .Cards {
   max-height:80vh;
   overflow-y: scroll;
   overflow-x: hidden;
-  padding-right: 1.2rem;
+  padding-right: 1em;
+  margin-right: 1em;
+  transition: 3s;
 }
 
 ::-webkit-scrollbar-track
@@ -287,15 +304,29 @@ body {
 .LessonContainer {
   padding: 1em;
 }
+.toggleSideBar {
+  height: 0.5rem;
+  width: 0.4rem;
+  border: 0.2rem solid #eef9ff;
+  border-left: 0.45rem solid #eef9ff;
+  margin-top: -1.1rem;
+  padding-right: 0.05rem;
+  margin-left: auto;
+  transition: .2s ease-in-out;
+}
+.toggleSideBar:hover {
+  border: 0.2rem solid #4fbcff;
+  border-left: 0.45rem solid #4ebbff;
+  transition: .2s ease-in-out;
+}
 .LessonsPage {
   border: 3px solid #c4e2f7;
-  border-top: 12px solid #c4e2f7;
+  border-top: 21px solid #c4e2f7;
   box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
   background: #f9fdff;
   border-radius: 3px;
   min-width: 360px;  
   flex: 1;
-  margin-left: 1.4em;
   height: fit-content;
 }
 .LessonsPage h1 {
@@ -323,21 +354,25 @@ iframe {
 .LessonNumber {
   padding: 0;
   margin: 4px 0;
-  font-size: 0.63em;
+  font-size: 0.73rem;
   font-weight: 600;
   margin-top: 4px;
 }
 .LessonTitle {
+ font-family: 'Inter Tight', sans-serif;
  color: #003d61;
- font-size:0.94rem;
+ font-size:0.82rem;
  margin: 0.3em 0;
+ max-width: 329px;
+ 
 }
 .LessonDuration {
   padding: 0;
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #999;
+  margin-top: .18rem;
 }
 .CheckIcon {
   color: #12b612;
@@ -390,7 +425,7 @@ iframe {
 .PrivacyPolicy {
   font-size: .8rem;
   padding: 2rem;
-  max-height:80vh;
+  max-height:82vh;
   overflow-y: scroll;
   overflow-x: hidden;
   padding-right: 1.2rem;
@@ -416,6 +451,7 @@ iframe {
   justify-content: space-between;
   margin: 0;
   padding: 0;
+  z-index: 5; 
 }
 .LoginContainer {
   border-top: 12px solid black;

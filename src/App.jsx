@@ -53,6 +53,7 @@ const App = () => {
             "email": 'guest',
             "activeID": 1,
             "completedLessons": [0],
+            "sideBar": true
         }
     )
 
@@ -78,7 +79,7 @@ const App = () => {
     }, [session.email])
 
     useEffect ( () => {
-        if(session.email !== "guest"){
+        if(session.email !== "guest" && session.isLogged && session.completedLessons !== [0]){
             var activeID = session.activeID
             var completedLessons = session.completedLessons.join("-")
             var email = session.email            
@@ -89,7 +90,7 @@ const App = () => {
             })
             console.log("Update")
         }
-    }, [session]) 
+    }, [session.activeID, session.completedLessons]) 
      
     let current = session.activeID
 
@@ -146,13 +147,19 @@ const App = () => {
             completedLessons:  prev.completedLessons.filter(e => e !== current)
             }))
         } 
+    const toggleSideBar = () => {
+        setSession(prev => ({
+            ...prev,
+            sideBar: !session.sideBar
+        }))
+    }
 
   return (
         <div className="App" >
-            <Header lessons={lessons} session={session} handleSignIn={handleSignIn} handleLogOut={handleLogOut}/>
+            <Header lessons={lessons} session={session} handleSignIn={handleSignIn} handleLogOut={handleLogOut} toggleSideBar={toggleSideBar}/>
             <Routes>
             <Route path="/" element={<Lessons lessons={lessons} session={session} clickLesson={clickLesson} markComplete={markComplete} 
-            markUnComplete={markUnComplete} current={current} increment={increment} decrement={decrement} />}  />
+            markUnComplete={markUnComplete} current={current} increment={increment} decrement={decrement} toggleSideBar={toggleSideBar}/>}  />
             <Route path="/start" element={<Start />}  />
             <Route path="/login" element={<Login />} />
             <Route path="/cabinet" element={<Cabinet session={session} handleLogOut={handleLogOut}/>}   />
@@ -160,7 +167,7 @@ const App = () => {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/finish" element={<Finish />}  />
             </Routes>
-            <Footer /> 
+            <Footer toggleSideBar={toggleSideBar}/> 
       </div> 
   );
 }
