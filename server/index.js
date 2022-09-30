@@ -41,8 +41,9 @@ app.post("/api/update", (req, res) => {
     var activeID = req.body.activeID
     var completedLessons = req.body.completedLessons
     var email = req.body.email
-    const sqlInsert = "UPDATE diabeuf7_sessions.sessions SET activeID='?', completedLessons=? WHERE email=?  ";
-    db.query(sqlInsert, [activeID, completedLessons, email], (err, resultp) => {
+    var id = req.body.id
+    const sqlInsert = "INSERT INTO diabeuf7_sessions.sessions (id, email, completedLessons, activeID) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE email=?, completedLessons=?, activeID=?";
+    db.query(sqlInsert, [id, email, completedLessons, activeID, email, completedLessons, activeID], (err, resultp) => {
         console.log(resultp)
     });
 })

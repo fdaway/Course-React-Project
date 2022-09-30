@@ -53,7 +53,8 @@ const App = () => {
             "email": 'guest',
             "activeID": 1,
             "completedLessons": [0],
-            "sideBar": true
+            "sideBar": true,
+            'id': ''
         }
     )
 
@@ -69,26 +70,34 @@ const App = () => {
                 email: session.email
             }
         }).then((responsee) => {
-            let sessionData = responsee.data[0]
+            responsee.data.length !== 0 ?
             setSession((prev) => ({
                 ...prev, 
-                activeID: sessionData.activeID,
-                completedLessons: sessionData.completedLessons.split("-").map(str => Number(str))
+                activeID: responsee.data[0].activeID,
+                completedLessons: responsee.data[0].completedLessons.split("-").map(str => Number(str)),
+                id: responsee.data[0].id
+            }))
+            :
+            setSession((prev) => ({
+                ...prev,
+                id: ''
             }))
         })
     }, [session.email])
+ 
 
     useEffect ( () => {
         if(session.email !== "guest" && session.isLogged && session.completedLessons !== [0]){
             var activeID = session.activeID
             var completedLessons = session.completedLessons.join("-")
-            var email = session.email            
+            var email = session.email
+            var id = session.userID      
             Axios.post("http://localhost:3001/api/update", {
             activeID: activeID,
             completedLessons: completedLessons,
-            email: email
+            email: email,
+            id: session.userGID
             })
-            console.log("Update")
         }
     }, [session.activeID, session.completedLessons]) 
      
@@ -101,7 +110,8 @@ const App = () => {
             email: identity.email,
             name: identity.name,
             avatar: identity.picture,
-            userGID: identity.sub
+            userGID: identity.sub,
+            userID: parseInt(identity.sub.slice(9,21))
         }))
     }
     const handleLogOut = () => {
