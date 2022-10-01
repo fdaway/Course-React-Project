@@ -16,7 +16,7 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true}))
 
 app.get('/api', (req, res) => {
-    const sqlSelect = "SELECT * FROM state_data"
+    const sqlSelect = "SELECT * FROM lessons"
     db.query(sqlSelect, (err, result) => {
         res.send(result);
     })
@@ -34,10 +34,9 @@ app.post("/api/update", (req, res) => {
     var activeID = req.body.activeID
     var completedLessons = req.body.completedLessons
     var email = req.body.email
-    var idd = Date.now()
+    var id = req.body.id
     const sqlInsert = "INSERT INTO sessions (id, email, completedLessons, activeID) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE email=?, completedLessons=?, activeID=?";
-    db.query(sqlInsert, [idd, email, completedLessons, activeID, email, completedLessons, activeID], (err, resultp) => {
-        console.log("Insert")
+    db.query(sqlInsert, [id, email, completedLessons, activeID, email, completedLessons, activeID], (err, resultp) => {
         console.log(resultp)
     });
 })

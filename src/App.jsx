@@ -88,12 +88,12 @@ const App = () => {
             var activeID = session.activeID
             var completedLessons = session.completedLessons.join("-")
             var email = session.email
-            var idd = session.userID      
+            var id = session.userID      
             Axios.post("http://localhost:3001/api/update", {
             activeID: activeID,
             completedLessons: completedLessons,
             email: email,
-            idd: idd
+            id: id
             })
         }
     }, [session.activeID, session.completedLessons]) 
