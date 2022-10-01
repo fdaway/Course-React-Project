@@ -8,15 +8,8 @@ const db = mysql.createPool({
         host: '162.241.225.138',
         user: 'diabeuf7_agent',
         password: 'E!YQ]E.vBo[2',
-        database: 'diabeuf7_course-state'
+        database: 'diabeuf7_course'
     });
-
-const dbs = mysql.createPool({
-        host: '162.241.225.138',
-        user: 'diabeuf7_agent',
-        password: 'E!YQ]E.vBo[2',
-        database: 'diabeuf7_sessions'
-    });    
 
 app.use(cors())
 app.use(express.json())
@@ -31,8 +24,8 @@ app.get('/api', (req, res) => {
 
 app.get('/api/session', (req, res) => {
     var email = req.query.email
-    const sqlSelect = "SELECT * FROM diabeuf7_sessions.sessions WHERE email=?"  
-    dbs.query(sqlSelect, [ email ], (err, resulte) => {
+    const sqlSelect = "SELECT * FROM sessions WHERE email=?"  
+    db.query(sqlSelect, [ email ], (err, resulte) => {
         res.send(resulte);
     })
 })
@@ -41,9 +34,10 @@ app.post("/api/update", (req, res) => {
     var activeID = req.body.activeID
     var completedLessons = req.body.completedLessons
     var email = req.body.email
-    var id = req.body.id
-    const sqlInsert = "INSERT INTO diabeuf7_sessions.sessions (id, email, completedLessons, activeID) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE email=?, completedLessons=?, activeID=?";
-    db.query(sqlInsert, [id, email, completedLessons, activeID, email, completedLessons, activeID], (err, resultp) => {
+    var idd = Date.now()
+    const sqlInsert = "INSERT INTO sessions (id, email, completedLessons, activeID) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE email=?, completedLessons=?, activeID=?";
+    db.query(sqlInsert, [idd, email, completedLessons, activeID, email, completedLessons, activeID], (err, resultp) => {
+        console.log("Insert")
         console.log(resultp)
     });
 })

@@ -78,10 +78,7 @@ const App = () => {
                 id: responsee.data[0].id
             }))
             :
-            setSession((prev) => ({
-                ...prev,
-                id: ''
-            }))
+            console.log("No user in DB yet")
         })
     }, [session.email])
  
@@ -91,12 +88,12 @@ const App = () => {
             var activeID = session.activeID
             var completedLessons = session.completedLessons.join("-")
             var email = session.email
-            var id = session.userID      
+            var idd = session.userID      
             Axios.post("http://localhost:3001/api/update", {
             activeID: activeID,
             completedLessons: completedLessons,
             email: email,
-            id: session.userGID
+            idd: idd
             })
         }
     }, [session.activeID, session.completedLessons]) 
