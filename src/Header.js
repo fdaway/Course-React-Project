@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-//import { useEffect } from 'react'
 import jwt_decode from 'jwt-decode'
 
 const Header = ({ lessons, session, handleSignIn }) => {
@@ -21,7 +20,7 @@ const Header = ({ lessons, session, handleSignIn }) => {
       document.getElementById("g-signin2"),
       { theme: "outline", size: "medium" }  
     );
-    // google.accounts.id.prompt();  
+    google.accounts.id.prompt();  
   }
 
 

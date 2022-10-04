@@ -18,7 +18,6 @@ const LessonCard = ({ lesson, session, clickLesson }) => {
  
 const cardStyleActive = {
     boxShadow: '0 9px 15px rgb(0 0 0 / 25%), 0 6px 6px rgb(0 0 0 / 22%)',
-    border: '3px solid #0099f5',
     transition: '800ms',
     background: 'white'
 }

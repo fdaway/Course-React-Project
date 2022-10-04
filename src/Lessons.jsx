@@ -1,12 +1,13 @@
-import LessonCard from './LessonCard.jsx'
+import LessonCard from './LessonCard'
+import VideoPlayer from './videoPlayer'
 import { FaCheck, FaLock } from 'react-icons/fa'
 import { Link } from 'react-router-dom'; 
+
  
- 
-const  Lessons  = ({ lessons, session, clickLesson, markComplete, markUnComplete, increment, decrement, toggleSideBar, handleSignIn }) => {
+const  Lessons  = ({ lessons, session, clickLesson, markComplete, markUnComplete, increment, decrement, toggleSideBar }) => {
  
     return <div className="ContentContainer">
-        <div className="Cards" style={ session.sideBar ? {marginLeft: '0px', transition: '.3s'} : { marginLeft: '-288px', transition: '.7s'}}>
+        <div className="Cards" style={ session.sideBar ? { transition: '.3s' } : { marginLeft: '-17.8rem', transition: '.7s'}}>
         {lessons.map((lesson) => (
         <LessonCard key={lesson.id} lesson={lesson} session={session}
         clickLesson={clickLesson} /> 
@@ -26,8 +27,8 @@ const  Lessons  = ({ lessons, session, clickLesson, markComplete, markUnComplete
                 
             </div>
             :
-            <div> </div>
-        }
+            <VideoPlayer lessons={lessons} session={session} markComplete={markComplete} />
+            }
             <div className="LessonContainer">  
             {lessons.map((lesson) => (   
                 lesson.id === session.activeID ? 

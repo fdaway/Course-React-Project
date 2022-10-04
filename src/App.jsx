@@ -59,26 +59,25 @@ const App = () => {
     )
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/api").then((response) => {
+        Axios.get("http://localhost:3001/api/lessons/get").then((response) => {
             setLessons(response.data)
         })
     }, [])
 
     useEffect (() => {
-        Axios.get("http://localhost:3001/api/session",  {
+        Axios.get("http://localhost:3001/api/sessions/get",  {
             params: {
                 email: session.email
             }
         }).then((responsee) => {
-            responsee.data.length !== 0 ?
+            responsee.data.length !== 0 &&
             setSession((prev) => ({
                 ...prev, 
                 activeID: responsee.data[0].activeID,
                 completedLessons: responsee.data[0].completedLessons.split("-").map(str => Number(str)),
                 id: responsee.data[0].id
             }))
-            :
-            console.log("No user in DB yet")
+           
         })
     }, [session.email])
  
@@ -89,7 +88,7 @@ const App = () => {
             var completedLessons = session.completedLessons.join("-")
             var email = session.email
             var id = session.userID      
-            Axios.post("http://localhost:3001/api/update", {
+            Axios.post("http://localhost:3001/api/sessions/update", {
             activeID: activeID,
             completedLessons: completedLessons,
             email: email,

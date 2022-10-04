@@ -15,14 +15,14 @@ app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true}))
 
-app.get('/api', (req, res) => {
+app.get('/api/lessons/get', (req, res) => {
     const sqlSelect = "SELECT * FROM lessons"
     db.query(sqlSelect, (err, result) => {
         res.send(result);
     })
 })
 
-app.get('/api/session', (req, res) => {
+app.get('/api/sessions/get', (req, res) => {
     var email = req.query.email
     const sqlSelect = "SELECT * FROM sessions WHERE email=?"  
     db.query(sqlSelect, [ email ], (err, resulte) => {
@@ -30,7 +30,7 @@ app.get('/api/session', (req, res) => {
     })
 })
 
-app.post("/api/update", (req, res) => {
+app.post("/api/sessions/update", (req, res) => {
     var activeID = req.body.activeID
     var completedLessons = req.body.completedLessons
     var email = req.body.email
