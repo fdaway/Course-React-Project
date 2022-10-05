@@ -1,5 +1,7 @@
 body {
   background: #fff;
+  margin: 0;
+  padding: 0;
   }
   h1, h2, ul,li, p {
     margin: 0;
@@ -31,6 +33,7 @@ body {
     font-size: calc(10px + 1.6vmin);
     font-family: sans-serif;
     min-height: 100vh;
+    min-width: 442px;
     display: flex;
     flex-direction: column;
     max-width: 82rem;
@@ -80,23 +83,28 @@ body {
  .Progress {
   border-radius: 3px;
   width: 12rem;
-  height: 1.4rem;
-  background: rgb(175 228 255);
+  height: 1.25rem;
+  background: rgb(203 238 255);
+  box-shadow: inset 0px 0px 7px 2px rgb(176 224 255), inset 0px 1px 2px 1px #2a363e;
+ }
+ .Footer .Progress { 
+  display: none;
  }
  .innerProgress {
   border-radius: 3px;
   cursor: default;
   user-select: none;
-  height: 1.4rem;
-  background: #6ac7ff;
+  height: 1.25rem;
+  background: #ffffff;
   display: flex;
   align-items: center;
   text-align: center;
   overflow:visible;
+  box-shadow: rgb(255 255 255) 0px 0px 7px 2px, rgb(133 210 255) 0px 0px 6px 0px;
   transition: 2.2s;
  }
  .Progress p {
-  font-size: 0.72rem;
+  font-size: 0.71rem;
   margin: 0 auto;
   min-width: 90px;
  }
@@ -132,24 +140,24 @@ body {
   font-size: .9rem;
 }
 .ButtonBlue {
-    cursor: pointer;
-    color: white;
-    background: #0099f5;
-    border: 0px;
-    border-radius: 2px;
-    padding: 6px 7px;
-    font-weight: 600;
-    font-size: .9rem;
+  cursor: pointer;
+  color: white;
+  background: #0099f5;
+  border: 0px;
+  border-radius: 2px;
+  padding: 6px 7px;
+  font-weight: 600;
+  font-size: .9rem;
   } 
   .ButtonGrey {
-    cursor: pointer;
-    color: white;
-    background: #0099f5;
-    border: 0px;
-    border-radius: 2px;
-    font-size: .9rem;
-    font-weight: 400;
-    padding: .3em .6em;
+  cursor: pointer;
+  color: white;
+  background: #0099f5;
+  border: 0px;
+  border-radius: 2px;
+  font-size: .9rem;
+  font-weight: 400;
+  padding: .3em .6em;
   } 
   .ButtonBlue:hover {
     color: white;
@@ -187,7 +195,7 @@ body {
   }
 .ContentContainer {
   margin: 0;
-  margin-top: 1.6em;
+  margin-top: 1.3em;
   min-width: 79rem;
   display: flex;
   justify-content: space-between;
@@ -195,21 +203,19 @@ body {
 }
 .CabinetContainer {
   margin: 2em auto 0;
-  min-width: 74rem;
- 
 }
 .Cabinet {
-    width: fit-content;
-    margin: 0 auto;
-    box-shadow: 0px 3px 50px 7px rgb(163 218 253), 0 6px 6px #9cd4f9;
-    border-radius: 3px;
-    padding: 5rem 5rem 5rem 5rem;
-    width: -moz-fit-content;
-    width: fit-content;
-    margin: 0 auto;
-    background: #fff;
-    background: #f0f4ff;
-    z-index: 0;
+  width: fit-content;
+  margin: 0 auto;
+  box-shadow: 0px 3px 50px 7px rgb(163 218 253), 0 6px 6px #9cd4f9;
+  border-radius: 3px;
+  padding: 5rem 5rem 5rem 5rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  background: #fff;
+  background: #f0f4ff;
+  z-index: 0;
 }
 .CabinetFlex {
   display: flex;
@@ -224,7 +230,6 @@ body {
 }
 .Cabinet h1 {
   margin-bottom: 1.2rem;
- 
 }
 .Cabinet span {
   color: #666;
@@ -250,6 +255,7 @@ body {
   padding: 0 1rem;
   transition: 3s;
   margin: 0 1rem 0 0;
+  overflow-y: auto;
 }
 
 ::-webkit-scrollbar-track
@@ -270,25 +276,54 @@ body {
   background-color: #e1f2fd;
 }
 .Card {
-    background: #f9fdff;
-    border-radius: 3px;
-    width: 14rem;
-    padding: 0.2em 0.4em 0.3em 0.4em;
-    margin-bottom: 1em;
-    cursor: pointer;
-    box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 3px 3px 6px 0px rgb(0 0 0 / 14%);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  background: #f9fdff;
+  border-radius: 3px;
+  width: 14rem;
+  padding: 0.2em 0.4em 0.3em 0.4em;
+  margin-bottom: 1em;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 3px 3px 6px 0px rgb(0 0 0 / 14%);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.CardLine1 {
+.CardLessonLine {
+  height: 1.7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom:0;
+}
+.CardTitleLine {
+  height: 1.3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .Card p {
   text-align: left;
+}
+.LessonNumber {
+  padding: 0;
+  margin: 4px 0;
+  font-size: 0.73rem;
+  font-weight: 600;
+  margin-top: 4px;
+}
+.LessonTitle {
+ font-family: 'Inter Tight', sans-serif;
+ color: #003d61;
+ font-size:0.92rem;
+ max-width: 329px;
+}
+.LessonDuration {
+  padding: 0;
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #999;
+  margin-top: .18rem;
 }
 .CompleteIcon {
   font-size: .8em;
@@ -304,7 +339,8 @@ body {
   width: 0.4rem;
   border: 0.15rem solid #eef9ff;
   border-left: 0.42rem solid #eef9ff;
-  margin-top: -1.1rem;
+  margin-top: -1.15rem;
+  margin-bottom: 0.25rem;
   padding-right: 0.01rem;
   margin-left: auto;
   transition: .2s ease-in-out;
@@ -342,18 +378,15 @@ body {
   padding-bottom: 56.25%;
 }
 .iWrapper {
-  
   width: 100%;
   height: 100%;
 }
 .iWrapper {
   position: relative;
   padding-bottom: 56.25%;
-  /* 16:9 */
   padding-top: 25px;
   height: 0;
 }
-
 .iWrapper iframe {
   position: absolute;
   top: 0;
@@ -365,27 +398,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.LessonNumber {
-  padding: 0;
-  margin: 4px 0;
-  font-size: 0.73rem;
-  font-weight: 600;
-  margin-top: 4px;
-}
-.LessonTitle {
- font-family: 'Inter Tight', sans-serif;
- color: #003d61;
- font-size:0.92rem;
- max-width: 329px;
-}
-.LessonDuration {
-  padding: 0;
-  margin: 0;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #999;
-  margin-top: .18rem;
 }
 .CheckIcon {
   color: #12b612;
@@ -462,6 +474,7 @@ body {
 .Footer ul {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0;
   padding: 0;
   z-index: 5; 
@@ -487,8 +500,8 @@ body {
   text-align: center;
 }
 .LoginContainer button {
-   margin: 0.5rem auto;
-   width: 100%;
+  margin: 0.5rem auto;
+  width: 100%;
 }
 .CardInfo {
   display: flex;
@@ -504,7 +517,9 @@ body {
     padding: 0 1em;
     margin: 0 auto 1em;
     height: 10.4rem;
-
+  }
+  .toggleSideBar {
+    display: none;
   }
   .Card {
   margin: 0.2rem auto 0.8rem auto;
@@ -535,10 +550,26 @@ body {
   }
 } 
 
-
 @media only screen and (max-width: 637px) { 
   #signInDiv {
   margin-top: 1rem;
+   }
+   .HeaderContainer .Progress {
+    display:none;
+   }
+   .Footer .Progress { 
+    display: block;
+    height:1.1rem;
+    font-size: .69rem;
+   }
+   .Footer .ProgressInner { 
+    display: block;
+    height:1.1rem;
+   }
+   .LessonsPage {
+    margin: 2rem 0;
+    padding: 0;
+ 
    }
    .Cards { 
     margin-top: 1.5rem;

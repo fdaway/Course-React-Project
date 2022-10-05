@@ -173,7 +173,7 @@ const App = () => {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/finish" element={<Finish />}  />
             </Routes>
-            <Footer toggleSideBar={toggleSideBar}/> 
+            <Footer lessons={lessons} session={session}/> 
       </div> 
   );
 }

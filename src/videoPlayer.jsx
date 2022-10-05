@@ -15,14 +15,16 @@ const VideoPlayer = ( { session, lessons, markComplete} ) => {
   }
   const [value, setValue] = useState(0); 
   useEffect(() => {
-    setValue(value => value + 1);
+    setValue(value => session.activeID);
     console.log("Video re-render", value)
-  }, [session, value])
+  }, [session.activeID])
 
     //(e) => console.log(e.target.getDuration()
  
-    return <div className="iWrapper">
-        <YouTube videoId={lessons[session.activeID-1].videoID} opts={opts} onEnd={markComplete}  onReady={getDuration}   />          
+    return <div>
+      <div className="iWrapper">
+        <YouTube videoId={lessons[session.activeID-1].videoID} opts={opts} onEnd={markComplete}  onReady={getDuration}   /> 
+        </div>
         </div>
 }
 

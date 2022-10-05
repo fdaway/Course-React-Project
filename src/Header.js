@@ -33,7 +33,7 @@ const Header = ({ lessons, session, handleSignIn }) => {
                 <div className="innerProgress" style={{'width': `${progress}%`}}><p>Progress: <strong>{Math.round(progress)}%</strong></p></div>
               </div>
               <div className="StartNav">
-                <div id="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style={session.isLogged ? {display: 'none'} : {}}></div>
+                <div id="g-signin2"  data-onsuccess="onSignIn" data-theme="dark" style={session.isLogged ? {display: 'none'} : {}}></div>
                 <Link to="/cabinet">
                 { session.isLogged &&
                 <div className="userInfo">
