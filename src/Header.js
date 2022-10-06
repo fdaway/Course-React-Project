@@ -33,7 +33,7 @@ const Header = ({ lessons, session, handleSignIn }) => {
                 <div className="innerProgress" style={{'width': `${progress}%`}}><p>Progress: <strong>{Math.round(progress)}%</strong></p></div>
               </div>
               <div className="StartNav">
-                <div id="g-signin2"  data-onsuccess="onSignIn" data-theme="dark" style={session.isLogged ? {display: 'none'} : {}}></div>
+                <div id="g-signin2" data-prompt_parent_id="g_id_onload" data-onsuccess="onSignIn" data-theme="dark" style={session.isLogged ? {display: 'none'} : {}}></div>
                 <Link to="/cabinet">
                 { session.isLogged &&
                 <div className="userInfo">
@@ -41,6 +41,14 @@ const Header = ({ lessons, session, handleSignIn }) => {
                   <img src={session.avatar} alt="Profile"/>
                 </div>
                 } </Link>
+                <div id="g_id_onload"
+     data-client_id="1023936046196-c55n0ke1qm3goi70ih1khh0hoaqqo1gu.apps.googleusercontent.com"
+     data-login_uri="http://localhost:3000/course-react-project"
+     data-prompt_parent_id="g_id_onload"
+     style={{position: 'absolute', top: '300px', right: '0px',
+            width: '0', height: '0', zIndex: '1001'}}>
+              </div>
+                
               </div>
             </header>
           </div>

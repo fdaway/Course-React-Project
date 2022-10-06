@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react';
 
 const VideoPlayer = ( { session, lessons, markComplete} ) => {
     
-    const opts = {
-        width: '100%',
-        playerVars: {
-          autoplay: 1,
-          mute: 1
-        }
-    }
+  const opts = {
+      width: '100%',
+      playerVars: {
+        autoplay: 1,
+        mute: 1
+      }
+  }
   function getDuration(e) {
     console.log(e.target.getDuration())
   }
@@ -23,7 +23,7 @@ const VideoPlayer = ( { session, lessons, markComplete} ) => {
  
     return <div>
       <div className="iWrapper">
-        <YouTube videoId={lessons[session.activeID-1].videoID} opts={opts} onEnd={markComplete}  onReady={getDuration}   /> 
+        <YouTube videoId={lessons[session.activeID-1].videoID} opts={opts} onEnd={markComplete} onReady={getDuration}   /> 
         </div>
         </div>
 }
