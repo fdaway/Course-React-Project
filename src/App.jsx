@@ -5,9 +5,11 @@ import Start from './pages/start'
 import PrivacyPolicy from './pages/privacy-policy'
 import Finish from './pages/finish'
 import Contacts from './pages/contacts'
+import Creator from './pages/creator'
 import Header from './Header'
 import Footer from './Footer'
 import Lessons from './Lessons.jsx'
+
 import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Axios from 'axios'
@@ -46,7 +48,8 @@ const App = () => {
         }
  
     ])
-
+     
+ 
     const [session, setSession] = useState (
         {   
             "isLogged": false,
@@ -57,6 +60,7 @@ const App = () => {
             'id': ''
         }
     )
+
 
     useEffect(() => {
         Axios.get("http://localhost:3001/api/lessons/get").then((response) => {
@@ -168,6 +172,7 @@ const App = () => {
             markUnComplete={markUnComplete} current={current} increment={increment} decrement={decrement} toggleSideBar={toggleSideBar}/>}  />
             <Route path="/start" element={<Start />}  />
             <Route path="/login" element={<Login />} />
+            <Route path="/creator" element={<Creator session={session} />} />
             <Route path="/cabinet" element={<Cabinet session={session} handleLogOut={handleLogOut}/>}   />
             <Route path="/contacts" element={<Contacts />}   />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />

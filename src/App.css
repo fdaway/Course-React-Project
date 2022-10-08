@@ -126,10 +126,27 @@ body {
   height: 0;
   cursor: pointer;
 }
+.userInfo p {
+  margin-right: 1rem;
+  font-weight: 600;
+}
 .userInfo img {
   border-radius: 50%; 
   width: 2rem;
   margin: 0 0 0 .7rem;
+}
+.Creator {
+  max-width: 18rem;
+  box-shadow: 0px 3px 50px 7px rgb(163 218 253), 0 6px 6px #9cd4f9;
+  background: #fff;
+  background: #f0f4ff;
+  padding: 1rem;
+}
+.Creator input {
+  width: 100%;
+  box-sizing: border-box;
+  margin: .3rem 0;
+  padding: .2rem;
 }
 .NakedButtonBlack {
   cursor: pointer;
@@ -208,13 +225,13 @@ body {
   width: fit-content;
   margin: 0 auto;
   box-shadow: 0px 3px 50px 7px rgb(163 218 253), 0 6px 6px #9cd4f9;
+  background: #fff;
+  background: #f0f4ff;
   border-radius: 3px;
   padding: 5rem 5rem 5rem 5rem;
   width: -moz-fit-content;
   width: fit-content;
   margin: 0 auto;
-  background: #fff;
-  background: #f0f4ff;
   z-index: 0;
 }
 .CabinetFlex {
