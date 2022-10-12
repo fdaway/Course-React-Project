@@ -19,7 +19,7 @@ const Header = ({ lessons, session, handleSignIn }) => {
       document.getElementById("g-signin2"),
       { theme: "outline", size: "medium" }  
     );
-    // google.accounts.id.prompt();  
+   google.accounts.id.prompt();  
   }
 
 
@@ -29,7 +29,6 @@ const Header = ({ lessons, session, handleSignIn }) => {
                 <Link to="/">Course React Project</Link> 
               </div>
               <Progress lessons={lessons} session={session}/>
-             
               <div className="StartNav">
               <div className="userInfo">
                 <Link to="/creator"><p>Create Course</p></Link>
@@ -42,13 +41,7 @@ const Header = ({ lessons, session, handleSignIn }) => {
                   <img src={session.avatar} alt="Profile"/>
                 </div>
                 } </Link>
-                <div id="g_id_onload"
-     data-client_id="1023936046196-c55n0ke1qm3goi70ih1khh0hoaqqo1gu.apps.googleusercontent.com"
-     data-login_uri="http://localhost:3000/course-react-project"
-     data-prompt_parent_id="g_id_onload"
-     style={{position: 'absolute', top: '300px', right: '0px',
-            width: '0', height: '0', zIndex: '1001'}}>
-              </div>
+             
                 
               </div>
             </header>

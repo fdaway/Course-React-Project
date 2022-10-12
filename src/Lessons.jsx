@@ -1,10 +1,15 @@
 import LessonCard from './LessonCard'
 import VideoPlayer from './videoPlayer'
 import { FaCheck, FaLock } from 'react-icons/fa'
-import { Link } from 'react-router-dom'; 
-
+import { Link } from 'react-router-dom'
+import jwt_decode from 'jwt-decode'
  
-const  Lessons  = ({ lessons, session, clickLesson, markComplete, markUnComplete, increment, decrement, toggleSideBar }) => {
+const  Lessons  = ({ lessons, session, clickLesson, markComplete, markUnComplete, increment, decrement, toggleSideBar, handleSignIn}) => {
+ 
+    function handleCredentialResponse(response) {
+        let identity = jwt_decode(response.credential)
+        handleSignIn(identity)
+      }
  
     return <div className="ContentContainer">
         <div className="Cards" style={ session.sideBar ? { transition: '.3s' } : { marginLeft: '-17.8rem', transition: '.7s'}}>
@@ -21,10 +26,8 @@ const  Lessons  = ({ lessons, session, clickLesson, markComplete, markUnComplete
         {lessons[session.activeID-1].isLocked && !session.isLogged ?
             <div className="Lock">
                 <FaLock className="LockBigIcon" />
-                
+                <div id="g-signin3" data-prompt_parent_id="g_id_onload" data-onsuccess="onSignIn" data-theme="dark"></div>
                 <Link to="login"><div><h3>Sign in to view the lesson</h3></div></Link>
-                
-                
             </div>
             :
             <VideoPlayer lessons={lessons} session={session} markComplete={markComplete} />

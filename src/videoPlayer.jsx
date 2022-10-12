@@ -7,7 +7,7 @@ const VideoPlayer = ( { session, lessons, markComplete} ) => {
       width: '100%',
       playerVars: {
         autoplay: 1,
-        mute: 1
+        mute: 1,
       }
   }
   function getDuration(e) {

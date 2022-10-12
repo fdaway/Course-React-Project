@@ -1,4 +1,3 @@
-import { withRouter } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 const Progress = ( { lessons, session }) => {
   let progress = 0

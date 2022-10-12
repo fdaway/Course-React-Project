@@ -1,17 +1,48 @@
-const Creator = ( { session }) => {
-    return <div className="VerticalContainer">
-     {session.isLogged? 
-     <div className="Creator">Creator Area
-        <form>
-        <input type="text"  name="Lesson name" placeholder="Lesson name"></input>
-        <input type="text"  name="videoID" placeholder="Youtube video ID"></input>
-        <input type="submit" value="Add" ></input>
-        </form>
+import { FaPlus } from 'react-icons/fa'
+import { Link } from 'react-router-dom';
+const Creator = ( { session, creation, addCourse, handleSubmit, handleTitleChange }) => {
 
+    
+    return  <div className="CreatorArea">
+        {session.isLogged? 
+        <div>
+            <h1>Creator's Area</h1>
+            <div className="CreatorContent">
+                <div>
+                    <div className="CreatorContainer">
+
+                        { creation.hasCourse &&
+                        <div className="CreatorCrourses">
+                        <Link to="/course">
+                        <div className="CourseCard">
+                            <p>{creation.courseTitle}</p>
+                        </div> 
+                        </Link>
+                        </div>
+
+                        }
+                        <div className="AddCourse" onClick={addCourse} style={creation.hasCourse ? {border: 'none', color: '#777'} : {}}>
+                        <p><FaPlus className="FaPlus" style={creation.hasCourse ? {color: '#b9b9b9'} : {}}/></p>
+                        <p>Add course</p>
+                        </div>
+                        {creation.creatingTitle && 
+                        <div className="CreatorForm" >
+                        <form onSubmit={handleSubmit} >
+                            <h4>Course title</h4>
+                            <input type="text"  name="courseTitle" onChange={handleTitleChange} placeholder="My First Course" ></input>
+                            <input type="submit" value="Add" ></input>
+                        </form>
+                        </div>
+                        }
+                    </div>
+                </div>
+             </div> 
         </div>
     :
-    <div>Sign In</div>
+    <div className="VHFlex"><h1>Sign In</h1></div>
     }
     </div>
+ 
+   
 }
 export default Creator; 

@@ -9,7 +9,7 @@ import Creator from './pages/creator'
 import Header from './Header'
 import Footer from './Footer'
 import Lessons from './Lessons.jsx'
-
+import Course from "./pages/course"
 import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Axios from 'axios'
@@ -84,7 +84,6 @@ const App = () => {
            
         })
     }, [session.email])
- 
 
     useEffect ( () => {
         if(session.email !== "guest" && session.isLogged && session.completedLessons !== [0]){
@@ -164,19 +163,55 @@ const App = () => {
         }))
     }
 
+    // Creator
+    const [creation, setCreation] = useState({
+        hasCourse: false,
+        creatingTitle: false,
+        addingLesson: false,
+        courseTitle: 'The Cosmic Revolution'
+    })
+    const [creatorLessons, setCreatorLessons] = useState()
+
+    const handleSubmit = (event) => {
+        addCourse()
+        event.preventDefault()
+        setCreation((prev) => ({
+            ...prev,
+            hasCourse: true
+        }))
+    }
+    const handleTitleChange = (event) => {
+        setCreation((prev) => ({
+            ...prev,
+            courseTitle: event.target.value
+        }))
+    }
+    const addCourse = () => {
+        setCreation((prev) => ({
+            ...prev, creatingTitle: !creation.creatingTitle,  
+        }))
+    }
+    const addLesson = () => {
+        setCreation((prev) => ({
+            ...prev, addingLesson: !creation.addingLesson,  
+        }))
+    }
+
   return (
         <div className="App" >
             <Header lessons={lessons} session={session} handleSignIn={handleSignIn} handleLogOut={handleLogOut} toggleSideBar={toggleSideBar}/>
             <Routes>
-            <Route path="/" element={<Lessons lessons={lessons} session={session} clickLesson={clickLesson} markComplete={markComplete} 
-            markUnComplete={markUnComplete} current={current} increment={increment} decrement={decrement} toggleSideBar={toggleSideBar}/>}  />
-            <Route path="/start" element={<Start />}  />
-            <Route path="/login" element={<Login />} />
-            <Route path="/creator" element={<Creator session={session} />} />
-            <Route path="/cabinet" element={<Cabinet session={session} handleLogOut={handleLogOut}/>}   />
-            <Route path="/contacts" element={<Contacts />}   />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/finish" element={<Finish />}  />
+            <Route index element={<Lessons lessons={lessons} session={session} clickLesson={clickLesson} markComplete={markComplete} 
+            markUnComplete={markUnComplete} current={current} increment={increment} decrement={decrement} toggleSideBar={toggleSideBar} handleSignIn={handleSignIn}/>}  />
+            <Route path="start" element={<Start />}  />
+            <Route path="login" element={<Login />} />
+            <Route path="creator" element={<Creator creation={creation} lessons={lessons} session={session} handleSubmit={handleSubmit}
+            handleTitleChange={handleTitleChange} addCourse={addCourse} />} />
+            <Route path="course" element={<Course creation={creation} lessons={lessons} session={session} clickLesson={clickLesson} addLesson={addLesson} />}/>
+            <Route path="cabinet" element={<Cabinet session={session} handleLogOut={handleLogOut}/>}/>
+            <Route path="contacts" element={<Contacts />}   />
+            <Route path="privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="finish" element={<Finish />}  />
             </Routes>
             <Footer lessons={lessons} session={session}/> 
       </div> 
