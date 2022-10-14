@@ -40,7 +40,7 @@ app.post("/api/sessions/update", (req, res) => {
         console.log(resultp)
     });
 })
-
-app.listen(3001, () => {
-    console.log("Server Started")
+const PORT = process.env.PORT || 8080
+app.listen(PORT, () => {
+    console.log(`App deployed at port: ${PORT}`)
 })

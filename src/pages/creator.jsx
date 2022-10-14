@@ -1,8 +1,8 @@
 import { FaPlus } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
-const Creator = ( { session, creation, addCourse, handleSubmit, handleTitleChange }) => {
+const Creator = ( { session, creation, addCourse, handleSubmitCourse, handleTitleChange }) => {
 
-    
+
     return  <div className="CreatorArea">
         {session.isLogged? 
         <div>
@@ -27,7 +27,7 @@ const Creator = ( { session, creation, addCourse, handleSubmit, handleTitleChang
                         </div>
                         {creation.creatingTitle && 
                         <div className="CreatorForm" >
-                        <form onSubmit={handleSubmit} >
+                        <form onSubmit={handleSubmitCourse} >
                             <h4>Course title</h4>
                             <input type="text"  name="courseTitle" onChange={handleTitleChange} placeholder="My First Course" ></input>
                             <input type="submit" value="Add" ></input>

@@ -3,7 +3,7 @@ const Progress = ( { lessons, session }) => {
   let progress = 0
   progress = (session.completedLessons.length-1) / lessons.length * 100
   let location = useLocation()
-  if (location.pathname.match(/creator/)){
+  if (location.pathname.match(/creator/) || location.pathname.match(/course/)){
     return null;
   }
     return <div className="Progress">

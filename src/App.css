@@ -167,7 +167,8 @@ body {
 .CreatorForm input[type=text]{
   border: none;
   margin-bottom: 1rem;
-  margin-top: 1rem;
+  margin-top: .6rem;
+  margin-bottom: 1.1rem;
   padding: 0.5rem;
   box-shadow: inset rgb(255 255 255) 1px -1px 7px 2px, rgb(133 210 255) 0px 0px 6px 0px;
 }
@@ -175,6 +176,12 @@ body {
   outline: none;
   box-shadow: inset rgb(255 255 255) 1px -1px 7px 2px, rgb(0, 155, 245) 0px 0px 6px 0px;
   transition: 0.5s;
+}
+.CreationLessonPage h2 {
+text-align: left;
+font-size: 0.9em;
+font-weight: 500;
+margin: 1rem 0;
 }
 .FaPlus {
   font-size: 2.5rem;
@@ -378,15 +385,55 @@ body {
 .Card {
   background: #f9fdff;
   border-radius: 3px;
-  width: 14rem;
+  width: 15rem;
   padding: 0.2em 0.4em 0.3em 0.4em;
   margin-bottom: 1em;
   cursor: pointer;
+  box-sizing: border-box;
+  margin-bottom: 1em;
   box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 3px 3px 6px 0px rgb(0 0 0 / 14%);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+.AddLesson {
+  background: #f9fdff;
+  border-radius: 3px;
+  border-style: dotted;
+  width: 15rem;
+  padding: 0.6em 0.4em 0.6em 0.4em;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 1.1rem;
+  user-select: none;
+  box-sizing: border-box;
+}
+.AddLesson .FaPlus {
+  font-size: 2rem;
+}
+.AddLessonForm {
+  margin: 1rem 0;
+  width: 15rem;
+  box-shadow: 0px 1px 20px 1px rgb(172 222 253), 0 6px 6px #b2dffd;
+  height: auto;
+  box-sizing: border-box;
+}
+.AddLessonForm form {
+  margin: 0 auto;
+}
+.LockedCheckbox{
+  display: flex;
+  justify-content: flex-start;
+  font-size: .92rem;
+  margin-bottom: 1rem;
+}
+.AddLessonForm input[type=checkbox] {
+  width: auto;
+  margin: 0 .6rem 0 0;
+  padding: 0;
 }
 .CardLessonLine {
   height: 1.7rem;

@@ -20,32 +20,9 @@ const App = () => {
             "id": 1,
             "title": "Course Overeview",
             "duration": "12min 36s",
-        },
-        {
-            "id": 2,
-            "title": "3 course goals and timing",
-            "duration": "5min 22s",
-        },
-        {
-            "id": 3,
-            "title": "Placeholder",
-            "duration": "3min 22s",
-        },
-        {
-            "id": 4,
-            "title": "Using State",
-            "duration": "12min 36s",
-        },
-        {
-            "id": 5,
-            "title": "Combining methods into a single multisteps",
-            "duration": "5min 22s",
-        },
-        {
-            "id": 6,
-            "title": "Sign-in form with oAuth",
-            "duration": "4min 11s",
+            "isLocked": 0
         }
+      
  
     ])
      
@@ -63,13 +40,13 @@ const App = () => {
 
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/api/lessons/get").then((response) => {
+        Axios.get("http://localhost:8080/api/lessons/get").then((response) => {
             setLessons(response.data)
         })
     }, [])
 
     useEffect (() => {
-        Axios.get("http://localhost:3001/api/sessions/get",  {
+        Axios.get("http://localhost:8080/api/sessions/get",  {
             params: {
                 email: session.email
             }
@@ -168,11 +145,13 @@ const App = () => {
         hasCourse: false,
         creatingTitle: false,
         addingLesson: false,
-        courseTitle: 'The Cosmic Revolution'
+        courseTitle: 'Course Title'
     })
-    const [creatorLessons, setCreatorLessons] = useState()
+    const [creationLessons, setCreationLessons] = useState([
+      
+    ])
 
-    const handleSubmit = (event) => {
+    const handleSubmitCourse = (event) => {
         addCourse()
         event.preventDefault()
         setCreation((prev) => ({
@@ -180,12 +159,33 @@ const App = () => {
             hasCourse: true
         }))
     }
-    const handleTitleChange = (event) => {
+    const handleSubmitLesson = (event) => {
+        addLesson()
+        event.preventDefault()
         setCreation((prev) => ({
             ...prev,
-            courseTitle: event.target.value
+            hasCourse: true
         }))
     }
+    const handleTitleChange = (event) => {
+        setCreationLessons((prev) => ({
+            ...prev,
+            title: event.target.value
+        }))
+    }
+    const handleVideoChange = (event) => {
+        setCreationLessons((prev) => ({
+            ...prev,
+            videoID: event.target.value
+        }))
+    }
+    const handleFreeChange = (event) => {
+        setCreationLessons((prev) => ({
+            ...prev,
+            isFree: !creationLessons.isFree
+        }))
+    }
+  
     const addCourse = () => {
         setCreation((prev) => ({
             ...prev, creatingTitle: !creation.creatingTitle,  
@@ -197,6 +197,18 @@ const App = () => {
         }))
     }
 
+    const setDuration = (e) => {
+        var duration = e.target.getDuration()
+        var minutes = Math.floor(duration / 60)
+        var seconds = duration - minutes * 60
+        var result = `${minutes}min ${seconds}s`
+        setCreationLessons((prev) => ({
+            ...prev,
+           duration: result
+        }))
+      }
+    
+
   return (
         <div className="App" >
             <Header lessons={lessons} session={session} handleSignIn={handleSignIn} handleLogOut={handleLogOut} toggleSideBar={toggleSideBar}/>
@@ -205,9 +217,10 @@ const App = () => {
             markUnComplete={markUnComplete} current={current} increment={increment} decrement={decrement} toggleSideBar={toggleSideBar} handleSignIn={handleSignIn}/>}  />
             <Route path="start" element={<Start />}  />
             <Route path="login" element={<Login />} />
-            <Route path="creator" element={<Creator creation={creation} lessons={lessons} session={session} handleSubmit={handleSubmit}
+            <Route path="creator" element={<Creator creation={creation} lessons={lessons} session={session} handleSubmitCourse={handleSubmitCourse}
             handleTitleChange={handleTitleChange} addCourse={addCourse} />} />
-            <Route path="course" element={<Course creation={creation} lessons={lessons} session={session} clickLesson={clickLesson} addLesson={addLesson} />}/>
+            <Route path="course" element={<Course creation={creation} creationLessons={creationLessons} session={session} clickLesson={clickLesson} addLesson={addLesson} 
+            handleTitleChange={handleTitleChange} handleFreeChange={handleFreeChange} handleVideoChange={handleVideoChange} handleSubmitLesson={handleSubmitLesson} setDuration={setDuration} />}/>
             <Route path="cabinet" element={<Cabinet session={session} handleLogOut={handleLogOut}/>}/>
             <Route path="contacts" element={<Contacts />}   />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
