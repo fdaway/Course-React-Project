@@ -68,7 +68,7 @@ const App = () => {
             var completedLessons = session.completedLessons.join("-")
             var email = session.email
             var id = session.userID      
-            Axios.post("http://localhost:3001/api/sessions/update", {
+            Axios.post("http://localhost:8080/api/sessions/update", {
             activeID: activeID,
             completedLessons: completedLessons,
             email: email,
