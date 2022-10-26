@@ -5,7 +5,7 @@ const Contacts = () => {
         
      </div>
       
-    <h2 style={{marginTop: '.5rem', fontSize: '1.4rem'}}>contact@almelnik.com</h2>
+    <h2 style={{marginTop: '.5rem', fontSize: '1.4rem'}}>alreadylivingme@gmail.com</h2>
 </div>
 }
 export default Contacts; 

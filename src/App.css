@@ -126,6 +126,15 @@ body {
   height: 0;
   cursor: pointer;
 }
+.Create::after {
+content: 'BETA';
+position: relative;
+right: 12px;
+top: -5px;
+font-size: .61rem;
+color: rgb(0, 140, 255);
+font-weight: 600;
+}
 .userInfo p {
   margin-right: 1rem;
   font-weight: 600;
@@ -303,7 +312,6 @@ margin: 1rem 0;
   }
 .ContentContainer {
   margin: 0;
-  margin-top: 1.3em;
   min-width: 79rem;
   display: flex;
   justify-content: space-between;
@@ -357,12 +365,12 @@ margin: 1rem 0;
  
 }
 .Cards {
+  margin-top: 2rem;
   max-height:84vh;
   overflow-y: scroll;
   overflow-x: hidden;
   padding: 0 1rem;
   transition: 3s;
-  margin: 0 1rem 0 0;
   overflow-y: auto;
 }
 ::-webkit-scrollbar-track
@@ -498,7 +506,7 @@ margin: 1rem 0;
   transition: .2s ease-in-out;
 }
 .LessonsPage {
-  margin: 0 1rem 1rem 0;
+  margin: 2rem 1rem 1rem 1rem;
   border: 3px solid #c4e2f7;
   border-top: 21px solid #c4e2f7;
   box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
@@ -548,6 +556,11 @@ margin: 1rem 0;
 .CheckIcon {
   color: #12b612;
   font-size: 0.9rem; 
+}
+.Free {
+  font-size: .6rem;
+  font-weight: 600;
+  color: rgb(0, 167, 8);
 }
 .PlayIcon {
   font-size: 0.72rem;
@@ -732,4 +745,66 @@ margin: 1rem 0;
    .Card {
     margin: 0.2rem auto 0.8rem auto;
    }
+  }
+
+  .Landing a {
+    color: #0093ff;
+    font-size: 1.2rem;
+  }
+  .Landing a:visited {
+    color: #0093ff;
+  }
+  .Landing h1 {
+    font-size: 3.3rem;
+    font-weight: 600;
+    text-align: center;
+    margin: 4rem 0 0;
+  }
+  .Landing h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin: 0 0 2rem;
+  }
+  .Landing h3 {
+    margin: 0 0 1rem;
+  }
+  .Landing p {
+    font-size: 1rem;
+  }
+  .Landing .Card, img {
+    margin-left: auto;
+  }
+  .promoCards img {
+    text-align: right;
+    margin-left: auto;
+    box-shadow: 0 9px 15px rgb(0 0 0 / 25%), 0 6px 6px rgb(0 0 0 / 22%);
+    user-select: none;
+  }
+  .Hero {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .Hero img {
+    width: 100%;
+  }
+  .promoCards {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+  }
+  .Right {
+    margin: 0 auto 0 3rem;
+    width: 50%;
+}
+  .Right p {
+    max-width: 21rem;
+  }
+  .Left {
+    margin-left: auto;
+    text-align: right;
+    width: 50%;
   }

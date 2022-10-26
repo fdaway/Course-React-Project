@@ -1,6 +1,6 @@
 import { FaPlus } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
-const Creator = ( { session, creation, addCourse, handleSubmitCourse, handleTitleChange }) => {
+const Creator = ( { session, creation, creationLessons, addCourse, handleCourseChange, handleSubmitCourse }) => {
 
 
     return  <div className="CreatorArea">
@@ -15,7 +15,7 @@ const Creator = ( { session, creation, addCourse, handleSubmitCourse, handleTitl
                         <div className="CreatorCrourses">
                         <Link to="/course">
                         <div className="CourseCard">
-                            <p>{creation.courseTitle}</p>
+                            <p>{creationLessons.courseTitle}</p>
                         </div> 
                         </Link>
                         </div>
@@ -29,7 +29,7 @@ const Creator = ( { session, creation, addCourse, handleSubmitCourse, handleTitl
                         <div className="CreatorForm" >
                         <form onSubmit={handleSubmitCourse} >
                             <h4>Course title</h4>
-                            <input type="text"  name="courseTitle" onChange={handleTitleChange} placeholder="My First Course" ></input>
+                            <input type="text"  name="courseTitle" onChange={handleCourseChange} placeholder="My First Course" ></input>
                             <input type="submit" value="Add" ></input>
                         </form>
                         </div>

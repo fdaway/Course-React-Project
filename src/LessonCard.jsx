@@ -10,7 +10,7 @@ const LessonCard = ({ lesson, session, clickLesson }) => {
                 </div>
                 <div className="CardTitleLine">
                     <p className="LessonTitle"  >{lesson.title}</p>
-                    <p >{lesson.isLocked && !session.isLogged? <FaLock className="LockIcon" /> : ''}</p>
+                    <p >{lesson.isLocked && !session.isLogged? <FaLock className="LockIcon" /> : <div className="Free">FREE</div>}</p>
                 </div>
                 <p className="LessonDuration"  ><FaPlayCircle className="PlayIcon" /> {lesson.duration}</p>
             </div> 

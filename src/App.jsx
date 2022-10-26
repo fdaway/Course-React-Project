@@ -4,6 +4,7 @@ import Cabinet from './pages/cabinet'
 import Start from './pages/start'
 import PrivacyPolicy from './pages/privacy-policy'
 import Finish from './pages/finish'
+import Landing from './pages/landing'
 import Contacts from './pages/contacts'
 import Creator from './pages/creator'
 import Header from './Header'
@@ -15,6 +16,7 @@ import { Routes, Route } from 'react-router-dom'
 import Axios from 'axios'
 
 const App = () => {
+
     const [lessons, setLessons] = useState([
         {
             "id": 1,
@@ -22,10 +24,7 @@ const App = () => {
             "duration": "12min 36s",
             "isLocked": 0
         }
-      
- 
     ])
-     
  
     const [session, setSession] = useState (
         {   
@@ -38,15 +37,14 @@ const App = () => {
         }
     )
 
-
     useEffect(() => {
-        Axios.get("http://localhost:8080/api/lessons/get").then((response) => {
+        Axios.get("https://almelnik.com/api/lessons/get").then((response) => {
             setLessons(response.data)
         })
     }, [])
 
     useEffect (() => {
-        Axios.get("http://localhost:8080/api/sessions/get",  {
+        Axios.get("https://almelnik.com/api/sessions/get",  {
             params: {
                 email: session.email
             }
@@ -68,7 +66,7 @@ const App = () => {
             var completedLessons = session.completedLessons.join("-")
             var email = session.email
             var id = session.userID      
-            Axios.post("http://localhost:8080/api/sessions/update", {
+            Axios.post("https://almelnik.com/api/sessions/update", {
             activeID: activeID,
             completedLessons: completedLessons,
             email: email,
@@ -144,8 +142,7 @@ const App = () => {
     const [creation, setCreation] = useState({
         hasCourse: false,
         creatingTitle: false,
-        addingLesson: false,
-        courseTitle: 'Course Title'
+        addingLesson: false
     })
     const [creationLessons, setCreationLessons] = useState([
       
@@ -165,6 +162,12 @@ const App = () => {
         setCreation((prev) => ({
             ...prev,
             hasCourse: true
+        }))
+    }
+    const handleCourseChange = (event) => {
+        setCreationLessons((prev) => ({
+            ...prev,
+            courseTitle: event.target.value
         }))
     }
     const handleTitleChange = (event) => {
@@ -213,18 +216,20 @@ const App = () => {
         <div className="App" >
             <Header lessons={lessons} session={session} handleSignIn={handleSignIn} handleLogOut={handleLogOut} toggleSideBar={toggleSideBar}/>
             <Routes>
-            <Route index element={<Lessons lessons={lessons} session={session} clickLesson={clickLesson} markComplete={markComplete} 
-            markUnComplete={markUnComplete} current={current} increment={increment} decrement={decrement} toggleSideBar={toggleSideBar} handleSignIn={handleSignIn}/>}  />
-            <Route path="start" element={<Start />}  />
-            <Route path="login" element={<Login />} />
-            <Route path="creator" element={<Creator creation={creation} lessons={lessons} session={session} handleSubmitCourse={handleSubmitCourse}
-            handleTitleChange={handleTitleChange} addCourse={addCourse} />} />
-            <Route path="course" element={<Course creation={creation} creationLessons={creationLessons} session={session} clickLesson={clickLesson} addLesson={addLesson} 
-            handleTitleChange={handleTitleChange} handleFreeChange={handleFreeChange} handleVideoChange={handleVideoChange} handleSubmitLesson={handleSubmitLesson} setDuration={setDuration} />}/>
-            <Route path="cabinet" element={<Cabinet session={session} handleLogOut={handleLogOut}/>}/>
-            <Route path="contacts" element={<Contacts />}   />
-            <Route path="privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="finish" element={<Finish />}  />
+                <Route index path="landing" element={<Landing />} />
+                <Route index element={<Lessons lessons={lessons} session={session} clickLesson={clickLesson} markComplete={markComplete} 
+                markUnComplete={markUnComplete} current={current} increment={increment} decrement={decrement} toggleSideBar={toggleSideBar} handleSignIn={handleSignIn}/>}  />
+                <Route path="start" element={<Start />} />
+                <Route path="login" element={<Login />} />
+                <Route path="creator" element={<Creator creation={creation} lessons={lessons} session={session} handleCourseChange={handleCourseChange} 
+                creationLessons={creationLessons} handleSubmitCourse={handleSubmitCourse}
+                handleTitleChange={handleTitleChange} addCourse={addCourse} />} />
+                <Route path="course" element={<Course creation={creation} creationLessons={creationLessons} session={session} clickLesson={clickLesson} addLesson={addLesson} 
+                handleTitleChange={handleTitleChange} handleFreeChange={handleFreeChange} handleVideoChange={handleVideoChange} handleSubmitLesson={handleSubmitLesson} setDuration={setDuration} />}/>
+                <Route path="cabinet" element={<Cabinet session={session} handleLogOut={handleLogOut}/>}/>
+                <Route path="contacts" element={<Contacts />}   />
+                <Route path="privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="finish" element={<Finish />}  />
             </Routes>
             <Footer lessons={lessons} session={session}/> 
       </div> 

@@ -3,6 +3,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express()
 const mysql = require('mysql')
+const https  = require('https')
+const fs = require('fs')
 
 const db = mysql.createPool({
         host: '162.241.225.138',
@@ -10,20 +12,18 @@ const db = mysql.createPool({
         password: 'E!YQ]E.vBo[2',
         database: 'diabeuf7_course'
     });
-
+    
 app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true}))
 
 app.get('/', (req, res) => {
-    res.send("GCloud Server")
+    res.send("Server")
 })
-
+ 
 app.get('/api/lessons/get', (req, res) => {
     const sqlSelect = "SELECT * FROM lessons"
     db.query(sqlSelect, (err, result) => {
-        console.log(err)
-        console.log(result)
         res.send(result);
     })
 })
@@ -46,7 +46,8 @@ app.post("/api/sessions/update", (req, res) => {
         console.log(resultp)
     });
 })
-const PORT = process.env.PORT || 8080
-app.listen(PORT, () => {
-    console.log(`App deployed at port: ${PORT}`)
+
+ 
+app.listen(8080, '127.0.0.1', () => {
+    console.log(`App deployed at port: 8080!`)
 })

@@ -10,11 +10,11 @@ const Course = ( {creation, creationLessons, session, clickLesson, addLesson, ha
           mute: 1,
         }
     }
- 
+    const storage = []
 
     return <div className="CreatorArea">
       
-     <h1>{creation.courseTitle}</h1>
+     <h1>{creationLessons.courseTitle}</h1>
 
      <div className="CreatorContent">
                     <div className="CreatorContainer">

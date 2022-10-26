@@ -1,0 +1,34 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'run', 'devStart' ]
+2 info using npm@6.14.17
+3 info using node@v14.20.1
+4 verbose run-script [ 'predevStart', 'devStart', 'postdevStart' ]
+5 info lifecycle server@1.0.0~predevStart: server@1.0.0
+6 info lifecycle server@1.0.0~devStart: server@1.0.0
+7 verbose lifecycle server@1.0.0~devStart: unsafe-perm in lifecycle true
+8 verbose lifecycle server@1.0.0~devStart: PATH: /usr/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/var/www/almelnik/almelnik.com/server/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/var/www/almelnik//.composer/vendor/bin:/var/www/almelnik//.node_modules/.bin/
+9 verbose lifecycle server@1.0.0~devStart: CWD: /var/www/almelnik/almelnik.com/server
+10 silly lifecycle server@1.0.0~devStart: Args: [ '-c', 'nodemon server.js' ]
+11 silly lifecycle server@1.0.0~devStart: Returned: code: 126  signal: null
+12 info lifecycle server@1.0.0~devStart: Failed to exec devStart script
+13 verbose stack Error: server@1.0.0 devStart: `nodemon server.js`
+13 verbose stack Exit status 126
+13 verbose stack     at EventEmitter.<anonymous> (/usr/lib/node_modules/npm/node_modules/npm-lifecycle/index.js:332:16)
+13 verbose stack     at EventEmitter.emit (events.js:400:28)
+13 verbose stack     at ChildProcess.<anonymous> (/usr/lib/node_modules/npm/node_modules/npm-lifecycle/lib/spawn.js:55:14)
+13 verbose stack     at ChildProcess.emit (events.js:400:28)
+13 verbose stack     at maybeClose (internal/child_process.js:1088:16)
+13 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:296:5)
+14 verbose pkgid server@1.0.0
+15 verbose cwd /var/www/almelnik/almelnik.com/server
+16 verbose Linux 5.4.0-105-generic
+17 verbose argv "/usr/bin/node" "/usr/bin/npm" "run" "devStart"
+18 verbose node v14.20.1
+19 verbose npm  v6.14.17
+20 error code ELIFECYCLE
+21 error errno 126
+22 error server@1.0.0 devStart: `nodemon server.js`
+22 error Exit status 126
+23 error Failed at the server@1.0.0 devStart script.
+23 error This is probably not a problem with npm. There is likely additional logging output above.
+24 verbose exit [ 126, true ]

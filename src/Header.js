@@ -3,8 +3,6 @@ import jwt_decode from 'jwt-decode'
 import Progress from './progress'
 const Header = ({ lessons, session, handleSignIn }) => {
  
-  
-
   function handleCredentialResponse(response) {
     let identity = jwt_decode(response.credential)
     handleSignIn(identity)
@@ -16,24 +14,27 @@ const Header = ({ lessons, session, handleSignIn }) => {
       callback: handleCredentialResponse
     });
     google.accounts.id.renderButton(
-      document.getElementById("g-signin2"),
+      document.getElementById("gDiv"),
       { theme: "outline", size: "medium" }  
     );
-   google.accounts.id.prompt();  
+    google.accounts.id.prompt();  
   }
 
 
-    return <div className="HeaderContainer">
+    return <div className="HeaderContainer" style={ session.sideBar ? {} : {  boxShadow: 'none'}}>
             <header className="App-header">
               <div className="Title">
-                <Link to="/">Course React Project</Link> 
+                <Link to="/landing">The Courses</Link> 
               </div>
               <Progress lessons={lessons} session={session}/>
               <div className="StartNav">
               <div className="userInfo">
+                <Link to="/"><p>Tech Stack</p></Link>
+              </div>
+              <div className="userInfo Create">
                 <Link to="/creator"><p>Create Course</p></Link>
               </div>
-                <div id="g-signin2" data-prompt_parent_id="g_id_onload" data-onsuccess="onSignIn" data-theme="dark" style={session.isLogged ? {display: 'none'} : {}}></div>
+                <div id="gDiv" style={session.isLogged ? {display: 'none'} : {}}></div>
                 <Link to="/cabinet">
                 { session.isLogged &&
                 <div className="userInfo">

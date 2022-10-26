@@ -12,7 +12,7 @@ const  Lessons  = ({ lessons, session, clickLesson, markComplete, markUnComplete
       }
  
     return <div className="ContentContainer">
-        <div className="Cards" style={ session.sideBar ? { transition: '.3s' } : { marginLeft: '-17.8rem', transition: '.7s'}}>
+        <div className="Cards" style={ session.sideBar ? {} : { display: 'none'}}>
         {lessons.map((lesson) => (
         <LessonCard key={lesson.id} lesson={lesson} session={session}
         clickLesson={clickLesson} /> 
@@ -20,8 +20,8 @@ const  Lessons  = ({ lessons, session, clickLesson, markComplete, markUnComplete
         </div>
        
 
-        <div className="LessonsPage">
-        <div className="toggleSideBar" onClick={toggleSideBar}><div className="toggleSidebarInner"></div></div>
+        <div className="LessonsPage" style={ session.sideBar ? {} : { margin: '0', border: 'none', borderTop: '21px solid #c4e2f7', boxShadow: 'none'}}>
+        <div className="toggleSideBar" onClick={toggleSideBar} style={ session.sideBar ? {} : { marginRight: '3px', }}><div className="toggleSidebarInner"></div></div>
 
         {lessons[session.activeID-1].isLocked && !session.isLogged ?
             <div className="Lock">
