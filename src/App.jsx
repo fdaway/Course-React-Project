@@ -222,7 +222,7 @@ const App = () => {
                 <Route path="start" element={<Start />} />
                 <Route path="login" element={<Login />} />
                 <Route path="creator" element={<Creator creation={creation} lessons={lessons} session={session} handleCourseChange={handleCourseChange} 
-                creationLessons={creationLessons} handleSubmitCourse={handleSubmitCourse}
+                creationLessons={creationLessons} handleSubmitCourse={handleSubmitCourse} handleSignIn={handleSignIn}
                 handleTitleChange={handleTitleChange} addCourse={addCourse} />} />
                 <Route path="course" element={<Course creation={creation} creationLessons={creationLessons} session={session} clickLesson={clickLesson} addLesson={addLesson} 
                 handleTitleChange={handleTitleChange} handleFreeChange={handleFreeChange} handleVideoChange={handleVideoChange} handleSubmitLesson={handleSubmitLesson} setDuration={setDuration} />}/>

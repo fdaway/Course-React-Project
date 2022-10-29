@@ -3,13 +3,23 @@ import VideoPlayer from './videoPlayer'
 import { FaCheck, FaLock } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
- 
+import { useEffect } from 'react';
 const  Lessons  = ({ lessons, session, clickLesson, markComplete, markUnComplete, increment, decrement, toggleSideBar, handleSignIn}) => {
- 
-    function handleCredentialResponse(response) {
-        let identity = jwt_decode(response.credential)
-        handleSignIn(identity)
-      }
+    useEffect(() => {
+        const google = window.google
+        google.accounts.id.initialize({
+          client_id: "1023936046196-c55n0ke1qm3goi70ih1khh0hoaqqo1gu.apps.googleusercontent.com",
+          callback: handleCredentialResponse
+        });
+        
+        google.accounts.id.renderButton(
+          document.getElementById("ggDiv"),
+          { theme: "outline", size: "medium" }  
+        )}, [session.activeID])
+        function handleCredentialResponse(response) {
+          let identity = jwt_decode(response.credential)
+          handleSignIn(identity)
+        }
  
     return <div className="ContentContainer">
         <div className="Cards" style={ session.sideBar ? {} : { display: 'none'}}>
@@ -26,8 +36,14 @@ const  Lessons  = ({ lessons, session, clickLesson, markComplete, markUnComplete
         {lessons[session.activeID-1].isLocked && !session.isLogged ?
             <div className="Lock">
                 <FaLock className="LockBigIcon" />
-                <div id="g-signin3" data-prompt_parent_id="g_id_onload" data-onsuccess="onSignIn" data-theme="dark"></div>
-                <Link to="login"><div><h3>Sign in to view the lesson</h3></div></Link>
+                <Link to="login"><div><h3 style={{marginBottom: '0.25rem'}}>Sign in to view the lesson</h3></div></Link>
+                <div id="ggDiv"   
+                  data-client_id="1023936046196-c55n0ke1qm3goi70ih1khh0hoaqqo1gu.apps.googleusercontent.com"
+                  data-auto_select="true"
+                  data-login_uri="https://thecourses.online/"  
+                  >
+                </div>
+                
             </div>
             :
             <VideoPlayer lessons={lessons} session={session} markComplete={markComplete} />
@@ -53,7 +69,7 @@ const  Lessons  = ({ lessons, session, clickLesson, markComplete, markUnComplete
             <div>
             <button className="ButtonBlue Complete"
             style={session.completedLessons.includes(session.activeID) ? displayNone : {}}
-            onClick={markComplete}>
+            onClick={markComplete}> 
             <FaCheck className="CompleteIcon" /> {'Mark Complete'} </button>  
             <button className="ButtonBlue Complete"
             style={ session.completedLessons.includes(session.activeID) ? {} : displayNone}

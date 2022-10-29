@@ -7,12 +7,14 @@ const Landing = () => {
    
     <h1>The Courses</h1>
     <Link to="/"><h2>Built with User Experience in mind</h2></Link>
-    <div className="Hero"><img draggable="false" src="/cr.png" alt="Course preview" /></div>
+    <div className="Hero">
+        {/* <img draggable="false" src="/cr.png" alt="Course preview" /> */}
+    </div>
     <div className="promoCards">
         <div className="Left">
             <div className='Card'  style={{boxShadow: '0 9px 15px rgb(0 0 0 / 25%), 0 6px 6px rgb(0 0 0 / 22%',  userSelect:'none'}} >
             <div className="CardLessonLine">
-                        <p className="LessonNumber" >Lesson </p>
+                        <p className="LessonNumber" >Lesson 6</p>
                         <p><FaCheckCircle className="CheckIcon" /></p>
                     </div>
                     <div className="CardTitleLine">
@@ -23,7 +25,7 @@ const Landing = () => {
             </div>
             <div className='Card' style={{marignBotton: '0',  userSelect:'none'}}>
             <div className="CardLessonLine">
-                        <p className="LessonNumber" >Lesson 3</p>
+                        <p className="LessonNumber" >Lesson 7</p>
                         <p> </p>
                     </div>
                     <div className="CardTitleLine">
@@ -36,7 +38,6 @@ const Landing = () => {
         <div className="Right">
             <h3>Free previews</h3>
                 <p>Confirm audience expactations, increase enrollments and build subscriber base showcasing sample content</p>
-      
         </div>
     </div>    
     <div className="promoCards">

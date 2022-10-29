@@ -197,10 +197,16 @@ margin: 1rem 0;
   color: rgb(168, 201, 231);
 }
 .VHFlex {
-  height: 80vh;
+  height: 78vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.VHFlex h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
 }
 .CreatorContent {
   display: flex;
@@ -467,7 +473,6 @@ margin: 1rem 0;
   margin-top: 4px;
 }
 .LessonTitle {
- font-family: 'Inter Tight', sans-serif;
  color: #003d61;
  font-size:0.92rem;
  max-width: 329px;
@@ -475,11 +480,12 @@ margin: 1rem 0;
 .LessonDuration {
   padding: 0;
   margin: 0;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: #999;
   margin-top: .18rem;
 }
+ 
 .CompleteIcon {
   font-size: .8em;
 }
@@ -488,6 +494,9 @@ margin: 1rem 0;
 }
 .LessonContainer {
   padding: 1em;
+}
+#ggDiv, #gDiv, #gggDiv {
+  height: 32px;
 }
 .toggleSideBar {
   height: 0.5rem;
@@ -555,7 +564,7 @@ margin: 1rem 0;
 }
 .CheckIcon {
   color: #12b612;
-  font-size: 0.9rem; 
+  font-size: 0.88rem; 
 }
 .Free {
   font-size: .6rem;
@@ -716,21 +725,25 @@ margin: 1rem 0;
   }
 } 
 
+ 
+@media only screen and (max-width: 792px) { 
+.HeaderContainer .Progress {
+  display:none;
+ }
+ .Footer .Progress { 
+  display: block;
+  height:1.1rem;
+  font-size: .69rem;
+ }
+ .Footer .ProgressInner { 
+  display: block;
+  height:1.1rem;
+ }
+}
+
 @media only screen and (max-width: 637px) { 
   #signInDiv {
   margin-top: 1rem;
-   }
-   .HeaderContainer .Progress {
-    display:none;
-   }
-   .Footer .Progress { 
-    display: block;
-    height:1.1rem;
-    font-size: .69rem;
-   }
-   .Footer .ProgressInner { 
-    display: block;
-    height:1.1rem;
    }
    .LessonsPage {
     margin: 2rem 0;
@@ -746,7 +759,9 @@ margin: 1rem 0;
     margin: 0.2rem auto 0.8rem auto;
    }
   }
-
+.Landing {
+  padding-bottom: 3rem;
+}
   .Landing a {
     color: #0093ff;
     font-size: 1.2rem;
@@ -782,19 +797,22 @@ margin: 1rem 0;
     user-select: none;
   }
   .Hero {
-    width: 80%;
+  
     margin: 0 auto;
     text-align: center;
     margin-bottom: 4rem;
   }
   .Hero img {
-    width: 100%;
+   
   }
   .promoCards {
     align-items: center;
     display: flex;
     justify-content: center;
     margin: 2rem;
+  }
+  .promoCards .LessonDuration {
+    font-size: .7rem;
   }
   .Right {
     margin: 0 auto 0 3rem;
