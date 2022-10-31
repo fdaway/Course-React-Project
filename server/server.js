@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express()
 const mysql = require('mysql')
-const https  = require('https')
+const mongoose = require('mongoose')
 const fs = require('fs')
 
 const db = mysql.createPool({
@@ -12,7 +12,12 @@ const db = mysql.createPool({
         password: 'E!YQ]E.vBo[2',
         database: 'diabeuf7_course'
     });
-    
+const mdb = 'mongodb+srv://mongo_manager:almost2advanced@courses.edxm7v4.mongodb.net/?retryWrites=true&w=majority'
+mongoose
+    .connect(mdb)
+    .then((res) => console.log("Connected to MDB"))
+    .catch((error) => console.log(error))
+
 app.use(cors())
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true}))

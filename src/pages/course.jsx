@@ -50,7 +50,7 @@ const Course = ( {creation, creationLessons, session, clickLesson, addLesson, ha
                         </div>
                     </div>
                     { creation.addingLesson &&
-                    <div className="CreationLessonPage" style={{width: '100%', marginTop: '1rem'}}>
+                    <div className="CreationLessonPage" style={{width: '100%', marginTop: '1rem', marginLeft: '1rem'}}>
                         <div className="iWrapper">
                             <YouTube videoId={creationLessons.videoID} opts={opts} onReady={setDuration}   /> 
                         </div>

@@ -14,57 +14,57 @@ const Creator = ( { session, creation, creationLessons, addCourse, handleCourseC
         google.accounts.id.renderButton(
           document.getElementById("gggDiv"),
           { theme: "outline", size: "medium" }  
-        )}, [session.activeID])
+        )}, [session.isLogged])
+
         function handleCredentialResponse(response) {
           let identity = jwt_decode(response.credential)
           handleSignIn(identity)
         }
     return  <div className="CreatorArea">
         {session.isLogged? 
-        <div>
-            <h1>Creator's Area</h1>
-            <div className="CreatorContent">
-                <div>
-                    <div className="CreatorContainer">
+            <div className="Visible">
+                <h1>Creator's Area</h1>
+                <div className="CreatorContent">
+                    <div>
+                        <div className="CreatorContainer">
 
-                        { creation.hasCourse &&
-                        <div className="CreatorCrourses">
-                        <Link to="/course">
-                        <div className="CourseCard">
-                            <p>{creationLessons.courseTitle}</p>
-                        </div> 
-                        </Link>
-                        </div>
+                            { creation.hasCourse &&
+                            <div className="CreatorCrourses">
+                            <Link to="/course">
+                            <div className="CourseCard">
+                                <p>{creationLessons.courseTitle}</p>
+                            </div> 
+                            </Link>
+                            </div>
+                            }
 
-                        }
-                        <div className="AddCourse" onClick={addCourse} style={creation.hasCourse ? {border: 'none', color: '#777'} : {}}>
-                        <p><FaPlus className="FaPlus" style={creation.hasCourse ? {color: '#b9b9b9'} : {}}/></p>
-                        <p>Add course</p>
+                            <div className="AddCourse" onClick={addCourse} style={creation.hasCourse ? {border: 'none', color: '#777'} : {}}>
+                            <p><FaPlus className="FaPlus" style={creation.hasCourse ? {color: '#b9b9b9'} : {}}/></p>
+                            <p>Add course</p>
+                            </div>
+                            {creation.creatingTitle && 
+                            <div className="CreatorForm" >
+                            <form onSubmit={handleSubmitCourse} >
+                                <h4>Course title</h4>
+                                <input type="text"  name="courseTitle" onChange={handleCourseChange} placeholder="My First Course" ></input>
+                                <input type="submit" value="Add" ></input>
+                            </form>
+                            </div>
+                            }
                         </div>
-                        {creation.creatingTitle && 
-                        <div className="CreatorForm" >
-                        <form onSubmit={handleSubmitCourse} >
-                            <h4>Course title</h4>
-                            <input type="text"  name="courseTitle" onChange={handleCourseChange} placeholder="My First Course" ></input>
-                            <input type="submit" value="Add" ></input>
-                        </form>
-                        </div>
-                        }
                     </div>
-                </div>
-             </div> 
-        </div>
-    :
-    <div className="VHFlex">
-        <h2>Sign in to continute</h2>
-        <div id="gggDiv" 
-            data-client_id="1023936046196-c55n0ke1qm3goi70ih1khh0hoaqqo1gu.apps.googleusercontent.com"
-            data-auto_select="true"
-            data-login_uri="https://thecourses.online/"  
-            style={session.isLogged ? {display: 'none'} : {}} >
-        </div>
-    </div>
-    }
+                </div> 
+            </div>
+        :
+            <div className="VHFlex">
+                <h2>Sign in to continute</h2>
+                {/* <div id="gggDiv" 
+                    data-client_id="1023936046196-c55n0ke1qm3goi70ih1khh0hoaqqo1gu.apps.googleusercontent.com"
+                    data-auto_select="true"
+                    data-login_uri="https://thecourses.online/">
+                </div> */}
+            </div>
+        }
     </div>
  
    
