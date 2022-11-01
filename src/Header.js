@@ -32,7 +32,7 @@ const Header = ({ lessons, session, handleSignIn }) => {
               <Progress lessons={lessons} session={session}/>
               <div className="StartNav">
               <div className="userInfo">
-                <Link to="/"><p>Tech Stack</p></Link>
+                <Link to="/"><p>Project Overview</p></Link>
               </div>
               <div className="userInfo Create">
                 <Link to="/creator"><p>Create Course</p></Link>
