@@ -2,7 +2,7 @@ import { FaPlus } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 import { useEffect } from 'react'
-const Creator = ( { session, creation, creationLessons, addCourse, handleCourseChange, handleSubmitCourse, handleSignIn }) => {
+const Creator = ( { session, creationProcess, creation, addCourse, handleCourseChange, handleSubmitCourse, handleSignIn }) => {
 
     useEffect(() => {
         const google = window.google
@@ -28,21 +28,21 @@ const Creator = ( { session, creation, creationLessons, addCourse, handleCourseC
                     <div>
                         <div className="CreatorContainer">
 
-                            { creation.hasCourse &&
+                            { creationProcess.hasCourse &&
                             <div className="CreatorCrourses">
                             <Link to="/course">
                             <div className="CourseCard">
-                                <p>{creationLessons.courseTitle}</p>
+                                <p>{creation.courseTitle}</p>
                             </div> 
                             </Link>
                             </div>
                             }
 
-                            <div className="AddCourse" onClick={addCourse} style={creation.hasCourse ? {border: 'none', color: '#777'} : {}}>
+                            <div className="AddCourse" onClick={addCourse} style={creationProcess.hasCourse ? {border: 'none', color: '#777'} : {}}>
                             <p><FaPlus className="FaPlus" style={creation.hasCourse ? {color: '#b9b9b9'} : {}}/></p>
                             <p>Add course</p>
                             </div>
-                            {creation.creatingTitle && 
+                            {creationProcess.creatingTitle && 
                             <div className="CreatorForm" >
                             <form onSubmit={handleSubmitCourse} >
                                 <h4>Course title</h4>

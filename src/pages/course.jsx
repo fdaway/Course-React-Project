@@ -1,7 +1,7 @@
 import YouTube from 'react-youtube';
 import { FaPlus } from 'react-icons/fa'
 import CreationLessonCard from '../creationLessonCard'
-const Course = ( {creation, creationLessons, session, clickLesson, addLesson, handleTitleChange, handleSubmitLesson, handleVideoChange, handleFreeChange, setDuration} ) => {
+const Course = ( {creationProcess, creation, session, clickLesson, addLesson, handleTitleChange, handleSubmitLesson, handleVideoChange, handleFreeChange, setDuration} ) => {
 
     const opts = {
         width: '100%',
@@ -14,20 +14,20 @@ const Course = ( {creation, creationLessons, session, clickLesson, addLesson, ha
 
     return <div className="CreatorArea">
       
-     <h1>{creationLessons.courseTitle}</h1>
+     <h1>{creation.courseTitle}</h1>
 
      <div className="CreatorContent">
                     <div className="CreatorContainer">
 
                         <div className="Cards">
-                            {creationLessons.length > 0 &&
-                            creationLessons.map((cLesson) => (
+                            {creation.length > 0 &&
+                            creation.map((cLesson) => (
                             <CreationLessonCard key={cLesson.id+"cr"} cLesson={cLesson} session={session}
                             clickLesson={clickLesson} /> 
                             ))}
 
-                            <div className="AddLesson" onClick={addLesson} style={creation.addingLesson || creationLessons.length > 0? {border: '2px dotted #a2d4f3', color: '#a2d4f3'} : {}}>
-                            <p><FaPlus className="FaPlus"  style={creation.addingLesson || creationLessons.length > 0 ? {color: '#a2d4f3'} : {}}/></p>
+                            <div className="AddLesson" onClick={addLesson} style={creationProcess.addingLesson || creation.length > 0? {border: '2px dotted #a2d4f3', color: '#a2d4f3'} : {}}>
+                            <p><FaPlus className="FaPlus"  style={creationProcess.addingLesson || creation.length > 0 ? {color: '#a2d4f3'} : {}}/></p>
                             <p>Add lesson</p>
                             </div>
 
@@ -52,9 +52,9 @@ const Course = ( {creation, creationLessons, session, clickLesson, addLesson, ha
                     { creation.addingLesson &&
                     <div className="CreationLessonPage" style={{width: '100%', marginTop: '1rem', marginLeft: '1rem'}}>
                         <div className="iWrapper">
-                            <YouTube videoId={creationLessons.videoID} opts={opts} onReady={setDuration}   /> 
+                            <YouTube videoId={creation.videoID} opts={opts} onReady={setDuration}   /> 
                         </div>
-                        <h2>{creationLessons.title}</h2 >
+                        <h2>{creation.title}</h2 >
                     </div>
                     }
              </div> 

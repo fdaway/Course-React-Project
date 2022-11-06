@@ -5,7 +5,7 @@ const app = express()
 const mysql = require('mysql')
 const mongoose = require('mongoose')
 const Course = require('./models/course')
-const { isCompositeComponent } = require('react-dom/test-utils')
+// const { isCompositeComponent } = require('react-dom/test-utils')
 
 const db = mysql.createPool({
         host: '162.241.225.138',
@@ -24,17 +24,21 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true}))
 
 
-app.get('/api/courses/get', (req, res) => {
+app.post('/api/courses/add', (req, res) => {
+    var title = req.body.title
+    var userID = req.body.userID
     const course = new Course({
-        title: "Interstellar"
+        title: title,
+        userID: userID
     })
     course.save()
         .then((result) =>{
             res.send(result)
         })
         .catch((err) => {
-            console.log(err)
+            console.log("Backend Error: ", err)
         })
+    return;
 })
 
 app.get('/', (req, res) => {
@@ -67,4 +71,5 @@ app.post("/api/sessions/update", (req, res) => {
     });
 })
 
+ 
  

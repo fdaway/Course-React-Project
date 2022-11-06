@@ -139,59 +139,67 @@ const App = () => {
     }
 
     // Creator
-    const [creation, setCreation] = useState({
+    const [creationProcess, setCreationProcess] = useState({
         hasCourse: false,
         creatingTitle: false,
         addingLesson: false
     })
-    const [creationLessons, setCreationLessons] = useState([
+    const [creation, setCreation] = useState([
       
     ])
 
-    const handleSubmitCourse = (event) => {
-        addCourse()
-        event.preventDefault()
-        setCreation((prev) => ({
-            ...prev,
-            hasCourse: true
-        }))
-    }
-    const handleSubmitLesson = (event) => {
-        addLesson()
-        event.preventDefault()
-        setCreation((prev) => ({
-            ...prev,
-            hasCourse: true
-        }))
-    }
     const handleCourseChange = (event) => {
-        setCreationLessons((prev) => ({
+        setCreation((prev) => ({
             ...prev,
             courseTitle: event.target.value
         }))
     }
+
+    const handleSubmitCourse = (event) => {
+        addCourse()
+        event.preventDefault()
+        setCreationProcess((prev) => ({
+            ...prev,
+            hasCourse: true
+        }))
+        Axios.post("https://almelnik.com/api/courses/add", {
+            title: creation.courseTitle,
+            userID: session.userID
+            })
+            .catch((err) => console.log("Front err: ", err))
+    }
+      
+    const addCourse = () => {
+        setCreationProcess((prev) => ({
+            ...prev, creatingTitle: !creationProcess.creatingTitle,  
+        }))
+    }
+
+    const handleSubmitLesson = (event) => {
+        addLesson()
+        event.preventDefault()
+        setCreationProcess((prev) => ({
+            ...prev,
+            hasCourse: true
+        }))
+    }
+
     const handleTitleChange = (event) => {
-        setCreationLessons((prev) => ({
+        setCreation((prev) => ({
             ...prev,
             title: event.target.value
         }))
     }
     const handleVideoChange = (event) => {
-        setCreationLessons((prev) => ({
+        setCreation((prev) => ({
             ...prev,
             videoID: event.target.value
         }))
     }
     const handleFreeChange = (event) => {
-        setCreationLessons((prev) => ({
-            ...prev,
-            isFree: !creationLessons.isFree
-        }))
-    }
-  
-    const addCourse = () => {
         setCreation((prev) => ({
-            ...prev, creatingTitle: !creation.creatingTitle,  
+            ...prev,
+            isFree: !creation.isFree
         }))
     }
     const addLesson = () => {
@@ -205,7 +213,7 @@ const App = () => {
         var minutes = Math.floor(duration / 60)
         var seconds = duration - minutes * 60
         var result = `${minutes}min ${seconds}s`
-        setCreationLessons((prev) => ({
+        setCreation((prev) => ({
             ...prev,
            duration: result
         }))
@@ -221,10 +229,10 @@ const App = () => {
                 markUnComplete={markUnComplete} current={current} increment={increment} decrement={decrement} toggleSideBar={toggleSideBar} handleSignIn={handleSignIn}/>}  />
                 <Route path="start" element={<Start />} />
                 <Route path="login" element={<Login />} />
-                <Route path="creator" element={<Creator creation={creation} lessons={lessons} session={session} handleCourseChange={handleCourseChange} 
-                creationLessons={creationLessons} handleSubmitCourse={handleSubmitCourse} handleSignIn={handleSignIn}
+                <Route path="creator" element={<Creator creationProcess={creationProcess} lessons={lessons} session={session} handleCourseChange={handleCourseChange} 
+                creation={creation} handleSubmitCourse={handleSubmitCourse} handleSignIn={handleSignIn}
                 handleTitleChange={handleTitleChange} addCourse={addCourse} />} />
-                <Route path="course" element={<Course creation={creation} creationLessons={creationLessons} session={session} clickLesson={clickLesson} addLesson={addLesson} 
+                <Route path="course" element={<Course creationProcess={creationProcess} creation={creation} session={session} clickLesson={clickLesson} addLesson={addLesson} 
                 handleTitleChange={handleTitleChange} handleFreeChange={handleFreeChange} handleVideoChange={handleVideoChange} handleSubmitLesson={handleSubmitLesson} setDuration={setDuration} />}/>
                 <Route path="cabinet" element={<Cabinet session={session} handleLogOut={handleLogOut}/>}/>
                 <Route path="contacts" element={<Contacts />}   />

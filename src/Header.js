@@ -27,13 +27,10 @@ const Header = ({ lessons, session, handleSignIn }) => {
     return <div className="HeaderContainer" style={ session.sideBar ? {} : {  boxShadow: 'none'}}>
             <header className="App-header">
               <div className="Title">
-                <Link to="/landing">The Courses</Link> 
+                <Link to="/">The Courses</Link> 
               </div>
               <Progress lessons={lessons} session={session}/>
               <div className="StartNav">
-              <div className="userInfo">
-                <Link to="/"><p>Project Overview</p></Link>
-              </div>
               <div className="userInfo Create">
                 <Link to="/creator"><p>Create Course</p></Link>
               </div>
